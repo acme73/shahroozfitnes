@@ -1,0 +1,15 @@
+{
+    "name": "f1/shahroozfitness",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Alireza",
+            "email": "website.khosravi@gmail.com"
+        }
+    ],
+    "require": {}
+}
