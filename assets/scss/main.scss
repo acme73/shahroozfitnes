@@ -1,0 +1,422 @@
+/*
+// Font Iranyekan
+@import "fonts";
+
+// Bootstrap icon
+@import "../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+
+// Colors
+$primary: #A30000;
+$secondary: #FFE13B;
+$gray-light: #F1F1F1;
+
+// Font Base
+$font-family-base: 'iranyekan';
+$font-size-root: 0.9rem;
+
+// Button
+$btn-border-radius: 0;
+
+// Form
+$input-border-width: 2px;
+$input-box-shadow: none;
+$input-focus-box-shadow: none;
+$input-btn-focus-box-shadow: none;
+
+// Text
+$font-weight-bolder: 900;
+$font-weight-bold: 800;
+
+// Create your own map
+$custom-colors: (
+        "primary": $primary,
+        "light" : $gray-light
+);
+
+// Required
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/utilities";
+
+// Merge the maps
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+// Utilities
+$utilities: map-merge(
+                $utilities,
+                (
+                        "card-rounded": (
+                                property: border-radius,
+                                class: card-rounded,
+                                values: (
+                                        15 : 15px
+                                ),
+                        )
+                )
+);
+
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+
+// Partials
+
+.f1.gray {
+  background-color: #5b5b5b;
+}
+
+.f1-bg-gray-dark {
+  background-color: #3e3e3e;
+}
+
+.f1-navbar #icon-menu-mobile {
+  cursor: pointer;
+}
+
+#search-input svg {
+  position: absolute;
+  left: 15px;
+}
+
+.f1-offcanvas {
+  width: 250px;
+}
+
+.f1-offcanvas .f1-offcanvas-menu-item {
+  margin-top: 0.5rem;
+  border-bottom: 2px solid $gray-200;
+  padding: 0.5rem 0;
+  display: block;
+}
+
+.f1-offcanvas .f1-offcanvas-menu-link.active {
+  color: $primary;
+}
+
+.f1-offcanvas .f1-offcanvas-menu-link {
+  text-decoration: none;
+  color: $black;
+  font-weight: bold;
+}
+
+.f1-offcanvas .f1-offcanvas-submenu-item {
+  padding: 0.3rem 0;
+  margin-right: 2rem;
+}
+
+.f1-offcanvas .f1-offcanvas-submenu-link {
+  text-decoration: none;
+  color: $black;
+  font-weight: bold;
+}
+
+.f1-offcanvas .f1-offcanvas-submenu-link.active {
+  color: $primary;
+}
+
+.f1-footer-menu-item {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid $gray-200;
+}
+
+.f1-footer-menu-link {
+  text-decoration: none;
+  color: $white;
+  font-weight: bold;
+}
+
+*/
+
+// Font Iranyekan
+@import "fonts";
+
+// Variable
+
+$font-base: "iranyekan";
+
+$primary_color: #A30000;
+$primary_color_focused: #800000;
+
+$light_color: #F1F1F1;
+
+$secondary_color: #FFE13B;
+
+@import "../../node_modules/uikit/dist/css/uikit-rtl.min.css";
+
+/*regionBase*/
+
+* {
+  font-family: $font-base, serif;
+}
+
+h1, h2, h3, h4, h5, h6, input, textarea, div, a {
+  font-family: $font-base, serif !important;
+}
+
+/*endregion*/
+
+/*regionDirection*/
+
+.f1-ltr {
+  direction: ltr !important;
+}
+
+.f1-rtl {
+  direction: rtl !important;
+}
+
+/*endregion*/
+
+/*regionBorder*/
+
+.f1-border-rounded-15 {
+  border-radius: 15px;
+}
+
+.f1-border-2 {
+  border-width: 2px;
+}
+
+
+.f1-border-1 {
+  border-width: 1px;
+}
+
+.f1-border-radius-10 {
+  border-radius: 10px;
+}
+
+/*endregion*/
+
+/*regionBackground*/
+
+.uk-background-primary {
+  background-color: $primary_color;
+}
+
+/*endregion*/
+
+/*regionButton*/
+
+.f1-button-spinner-show span {
+  display: none;
+}
+
+.f1-button-spinner-hide i {
+  display: none;
+}
+
+.uk-button-primary {
+  background-color: $primary_color;
+}
+
+.uk-button-primary:hover {
+  background-color: $primary_color_focused;
+  color: #fff;
+}
+
+/*endregion*/
+
+/*regionForm*/
+
+.uk-input:focus, .uk-select:focus, .uk-textarea:focus {
+  border-color: $primary_color;
+}
+
+/*endregion*/
+
+/*regionNotification */
+
+.uk-notification {
+  width: fit-content;
+  width: -moz-fit-content;
+  margin-left: 10px;
+}
+
+.uk-notification-message-success {
+  background: #00ff10;
+  color: #ffffff;
+  padding-left: 35px;
+  border-radius: 10px;
+}
+
+.uk-notification-message-warning {
+  background: #ff0000;
+  color: #ffffff;
+  padding-left: 35px;
+  border-radius: 10px;
+}
+
+.uk-notification-close {
+  top: 7px;
+  left: 9px;
+  right: unset !important;
+  color: #ffff;
+}
+
+.uk-notification-message:hover .uk-notification-close {
+  color: #ffffff;
+}
+
+/*endregion */
+
+/*regionText*/
+
+.uk-text-default {
+  color: #FFFFFF !important;
+}
+
+/*endregion*/
+
+/*regionImage*/
+
+.f1-image-upload {
+  object-fit: scale-down;
+  border-radius: 3px;
+  margin: auto;
+  background: #e6e6e6;
+}
+
+/*endregion*/
+
+/*regionAccount*/
+
+.f1-account-header {
+  z-index: 9;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.f1-account-sidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 240px;
+  z-index: 2;
+  transition: height 0.3s ease-out;
+  box-shadow: 13px 0 11px 6px #000000;
+}
+
+.f1-account-sidebar-logo {
+  height: 52px;
+}
+
+.f1-account-sidebar-box-user {
+  padding: 15px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: -1px;
+  background-color: $light_color
+}
+
+.f1-account-sidebar-box-user #profile {
+  width: 60px;
+  margin: 0 auto 10px auto;
+  display: block;
+}
+
+.f1-account-footer-sidebar {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 15px 0;
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  bottom: 0;
+  width: 240px;
+  color: #ffffff;
+}
+
+.f1-account-sidebar-menu-wrap {
+  padding-bottom: 60px;
+}
+
+.f1-text-light {
+  font-weight: 200;
+  font-size: 1.25rem;
+}
+
+.uk-navbar-nav > li > a,
+.uk-navbar-item,
+.uk-navbar-toggle {
+  min-height: 52px;
+  padding: 0 8px;
+  font-size: 0.85rem;
+}
+
+.navbar-logo {
+  background-color: #222A30;
+  margin-left: -12px;
+}
+
+
+.f1-account-sidebar ul.uk-nav-default > li > a {
+  padding: 15px 5px;
+  border-left: 2px solid transparent;
+  transition: all 0.15s ease-out;
+}
+
+.f1-account-sidebar ul.uk-nav-default li.uk-nav-header {
+  padding: 20px 20px 8px 20px;
+}
+
+.f1-account-sidebar ul.uk-nav-default > li > a:hover, .f1-account-sidebar ul.uk-nav-default > li.uk-open > a {
+  border-left: 3px solid $primary_color;
+  padding-left: 10px;
+  color: $primary_color;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.f1-account-sidebar ul.uk-nav-default li .uk-nav-sub {
+  padding-left: 34px;
+}
+
+.f1-account-sidebar ul.uk-nav-default li .uk-nav-sub a {
+  padding: 6px 0;
+}
+
+.f1-account-content {
+  margin-top: 52px;
+  padding: 30px 0 50px 0;
+  background-color: $light_color;
+  margin-left: 0;
+  transition: margin 0.2s cubic-bezier(.4, 0, .2, 1);
+}
+
+.chart-container {
+  position: relative;
+  height: 300px;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 960px) {
+
+  .f1-account-content {
+    margin-right: 240px;
+  }
+
+  .f1-account-header {
+    right: 240px;
+  }
+
+}
+
+/*endregion*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

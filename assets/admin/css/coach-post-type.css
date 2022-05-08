@@ -1,0 +1,95 @@
+.f1-panel {
+    display: grid;
+    grid-template-columns: 170px auto;
+}
+
+.f1-panel-tab {
+    border-left: 1px solid #c3c4c7;
+    user-select: none;
+}
+
+.f1-panel-tab ul {
+    margin: 0
+}
+
+.f1-panel-tab li {
+    padding: 10px;
+    display: block;
+    cursor: pointer;
+    margin: 0;
+    border-bottom: 1px solid #c3c4c7;
+}
+
+.f1-panel-content {
+    padding: 10px;
+    background: #fff;
+}
+
+.f1-panel-tab .active {
+    background: #f0f0f1;
+}
+
+.f1-panel-content .row {
+    display: grid;
+    grid-template-columns: 200px auto;
+    margin-bottom: 5px;
+    align-items: center;
+}
+
+.f1-coach-row-container {
+    background: #f5f5f5;
+    border: 1px solid #c3c4c7;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 15px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.f1-coach-new-record {
+    text-align: center;
+    padding: 12px;
+    border: 1px dashed;
+    width: 200px;
+    margin: auto;
+    cursor: cell;
+    background: #f0f0f1;
+    user-select: none;
+}
+
+.f1-coach-new-record span {
+    padding-right: 4px;
+}
+
+/*regionDirection*/
+
+.f1-ltr {
+    direction: ltr !important;
+}
+
+.f1-rtl {
+    direction: rtl !important;
+}
+
+/*endregion*/
+
+/*regionCursor*/
+
+.f1-cursor-pointer {
+    cursor: pointer;
+}
+
+.f1-cursor-move {
+    cursor: move;
+}
+
+/*endregion*/
+
+/*region Image*/
+.f1-image-upload {
+    object-fit: scale-down;
+    border-radius: 10px;
+    margin: auto;
+}
+
+/*endregion*/

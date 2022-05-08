@@ -1,8 +1,23 @@
 <?php
 
+use App\core\App;
+use App\core\Initializer;
+use App\theme\services\Ajax;
+use App\theme\services\CoachPropertyMetaBox;
 
-use App\classes\Test;
-
+require "constant.php";
 require "vendor/autoload.php";
 
-new Test();
+new Initializer();
+new Ajax();
+if ( is_admin() ) {
+
+	/**init coach property meta box*/
+	new CoachPropertyMetaBox();
+
+}
+
+new App();
+
+
+
