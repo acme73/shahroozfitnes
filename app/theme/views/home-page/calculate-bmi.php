@@ -4,41 +4,41 @@ homepage calculate bmi rtl
 
 -->
 
-<section class="bg-white pt-5">
-    <div class="container">
-
-        <div class="row">
-            <h2 class="fw-bold">محاسبه شاخص توده بدنی (BMI)</h2>
-            <p class="mt-3">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
-        </div>
-
-        <div class="row align-items-end">
-            <div class="col-lg-5 order-1 order-lg-0 mt-3 mt-lg-0">
-                <div class="mb-4 text-center">
-                    <p class="fw-bold">برای محاسبه شاخص توده بدنی (BMI) خود، فرم زیر را پر کنید:</p>
+<section class="f1-pt-40">
+    <div class="uk-container">
+        <div class="uk-flex-bottom" uk-grid>
+            <div class="uk-width-1-1 uk-flex-first">
+                <h3 class="uk-text-bold">محاسبه شاخص توده بدنی (BMI)</h3>
+                <p class="f1-text-black">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
+            </div>
+            <div class="uk-width-1-2@m uk-margin-bottom ">
+                <div class="uk-margin-small-bottom">
+                    <p class="uk-text-bold f1-text-black">برای محاسبه شاخص توده بدنی (BMI) خود، فرم زیر را پر کنید:</p>
                 </div>
-                <div class="row align-items-center mb-4">
-                    <div class="col-1 fw-bold">قد:</div>
-                    <div class="col-11">
-                        <input type="text" placeholder="به سانتیمتر (مثلا‌:180)" id="bmi_height" class="form-control rounded-pill border border-3 border-primary">
+                <div class="uk-flex-middle" uk-grid>
+                    <div class="uk-width-auto">
+                        <span class="uk-text-bold f1-text-black" style="width: 8px;display: block"> قد:</span>
+                    </div>
+                    <div class="uk-width-expand">
+                        <input class="uk-input uk-border-pill f1-border-3 f1-border-primary" style="width: 320px" type="text" placeholder="به سانتیمتر (مثلا:180)">
+                    </div>
+                    <div class="uk-width-1-1 uk-margin-remove"></div>
+                    <div class="uk-width-auto">
+                        <span class="uk-text-bold f1-text-black" style="width: 8px;display: block"> وزن:</span>
+                    </div>
+                    <div class="uk-width-expand">
+                        <input class="uk-input uk-border-pill f1-border-3 f1-border-primary" style="width: 320px" type="text" placeholder="به کیلوگرم (مثلا:82.5)">
+                    </div>
+                    <div class="uk-width-1-1 uk-margin-remove"></div>
+                    <div class="uk-width-expand uk-text-center">
+                        <button class="uk-button uk-button-primary uk-border-pill uk-margin-small-top">محاسبه BMI</button>
                     </div>
                 </div>
-                <div class="row align-items-center">
-                    <div class="col-1 fw-bold">وزن:</div>
-                    <div class="col-11">
-                        <input type="text" placeholder="به کیلوگرم (مثلا‌:82.5)" id="bmi_height" class="form-control rounded-pill border border-3 border-primary">
-                    </div>
-                </div>
-                <div class="text-center">
-                    <button class="btn btn-primary rounded-pill px-5 mt-4 mb-5">محاسبه BMI</button>
-                </div>
             </div>
-            <div class="col-lg-7 order-0 text-center">
-                <img class="img-fluid" src="<?= F1_THEME_ASSET_URL . "images/home-page/firstpage-bmi-02.svg" ?>" width="450"/>
+            <div class="uk-width-1-2@m uk-flex-first uk-flex-last@m ">
+                <img src="<?= F1_THEME_ASSET_URL . "images/home-page/firstpage-bmi-02.svg" ?>" width="450"/>
             </div>
         </div>
-
     </div>
 </section>
-
 

@@ -13,7 +13,7 @@ class App {
 		$routing = new Routing();
 		$url     = $this->parseUrl();
 
-		if ( $routing->routes && in_array( $url[0], [ "account", "login" ] ) ) {
+		if ( $routing->routes && in_array( $url[0], [ "account", "login", "checkout"] ) ) {
 
 			$controller = new DefaultController();
 			$action     = "notfound";

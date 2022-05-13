@@ -141,16 +141,27 @@ $light_color: #F1F1F1;
 
 $secondary_color: #FFE13B;
 
-@import "../../node_modules/uikit/dist/css/uikit-rtl.min.css";
+@import "../css/uikit-rtl.min.css";
 
 /*regionBase*/
 
 * {
   font-family: $font-base, serif;
+  font-size: 14px;
 }
 
 h1, h2, h3, h4, h5, h6, input, textarea, div, a {
   font-family: $font-base, serif !important;
+}
+
+/*endregion*/
+
+/*regionContainer*/
+@media (min-width: 960px) {
+  .uk-container {
+    padding-right: 50px;
+    padding-left: 50px;
+  }
 }
 
 /*endregion*/
@@ -167,23 +178,72 @@ h1, h2, h3, h4, h5, h6, input, textarea, div, a {
 
 /*endregion*/
 
+/*regionPaging*/
+.f1-paging a {
+  background: #afaaaa;
+  border-radius: 30px;
+  min-width: 40px;
+  padding-top: 8px;
+  height: 40px;
+  display: inline-block;
+  box-sizing: border-box;
+  padding-right: 15px;
+  padding-left: 15px;
+  text-decoration: none;
+  transition: 0.2s;
+  color : #FFFFFF;
+}
+
+.f1-paging a:hover {
+  background: $primary_color;
+  transition: 0.2s;
+}
+
+.f1-paging span {
+  background: $primary_color;
+  color: #ffffff;
+  border-radius: 30px;
+  width: 40px;
+  padding-top: 8px;
+  height: 40px;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+/*endregion*/
+
 /*regionBorder*/
 
 .f1-border-rounded-15 {
   border-radius: 15px;
 }
 
-.f1-border-2 {
-  border-width: 2px;
-}
-
-
 .f1-border-1 {
   border-width: 1px;
 }
 
+.f1-border-2 {
+  border-width: 2px;
+}
+
+.f1-border-3 {
+  border-width: 3px;
+}
+
 .f1-border-radius-10 {
   border-radius: 10px;
+}
+
+.f1-border-primary {
+  border-color: $primary_color;
+}
+
+.f1-border-solid {
+  border-style: solid;
+}
+
+.f1-remove-border {
+  border: unset !important;
 }
 
 /*endregion*/
@@ -192,6 +252,27 @@ h1, h2, h3, h4, h5, h6, input, textarea, div, a {
 
 .uk-background-primary {
   background-color: $primary_color;
+}
+
+.uk-background-muted {
+  background-color: $light_color;
+}
+
+.f1-background-primary {
+  background-color: $primary_color !important;
+}
+
+
+.f1-background-white {
+  background-color: #FFFFFF;
+}
+
+.f1-background-gray-dark {
+  background-color: #3d3d3d;
+}
+
+.f1-background-gray-light {
+  background-color: #5b5b5b;
 }
 
 /*endregion*/
@@ -221,6 +302,10 @@ h1, h2, h3, h4, h5, h6, input, textarea, div, a {
 
 .uk-input:focus, .uk-select:focus, .uk-textarea:focus {
   border-color: $primary_color;
+}
+
+.uk-radio:checked, .uk-checkbox:checked {
+  background-color: $primary_color !important;
 }
 
 /*endregion*/
@@ -264,6 +349,53 @@ h1, h2, h3, h4, h5, h6, input, textarea, div, a {
 
 .uk-text-default {
   color: #FFFFFF !important;
+}
+
+.uk-text-primary {
+  color: $primary_color !important;
+}
+
+.uk-text-bolder {
+  font-weight: 900;
+}
+
+.uk-text-bold {
+  font-weight: 800;
+}
+
+.f1-text-white {
+  color: #FFFFFF;
+}
+
+.f1-text-black {
+  color: #000000 !important;
+}
+
+/*endregion*/
+
+/*regionPadding*/
+
+.f1-py-5 {
+  padding: 5px 0;
+}
+
+.f1-px-5 {
+  padding: 0 5px;
+}
+
+.f1-pt-40 {
+  padding-top: 40px;
+}
+
+.f1-pr-8 {
+  padding-right: 8px;
+}
+
+/*endregion*/
+
+/*regionMargin*/
+.f1-ma-10 {
+  margin-top: 10px;
 }
 
 /*endregion*/
@@ -405,6 +537,13 @@ h1, h2, h3, h4, h5, h6, input, textarea, div, a {
 }
 
 /*endregion*/
+
+
+
+
+
+
+
 
 
 

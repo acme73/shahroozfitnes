@@ -47,7 +47,7 @@
 
             <div class="row">
                 <label for="coach_explanation">معرفی کوتاه</label>
-                <textarea id="coach_explanation" name="coach_explanation"><?php isset( $coach_property['coach_explanation'] ) ? sanitize_textarea_field( $coach_property['coach_explanation'] ) : '' ?></textarea>
+                <textarea id="coach_explanation" name="coach_explanation"><?= $coach_property['coach_explanation'] ?? '' ?></textarea>
             </div>
 
         </div>
@@ -117,7 +117,6 @@
             <div id="f1_coach_program_prices_container">
 
 				<?php if ( $coach_property !== null && isset( $coach_property["coach_program_prices"] ) ): ?>
-
 					<?php foreach ( $coach_property["coach_program_prices"] as $program_price ): ?>
                         <div class="f1-coach-row-container">
 

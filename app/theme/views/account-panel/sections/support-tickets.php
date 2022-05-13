@@ -326,14 +326,10 @@ use App\utils\View;
 					<?php if ( isset( $query_var['page'] ) && intval( $query_var['page'] ) !== 1 ): ?>
                         <li><a href="<?= add_query_arg( [ 'page' => $query_var['page'] - 1 ] ) ?>"><span uk-pagination-previous></span></a></li>
 					<?php endif; ?>
-					<?php for (
-						$i = 1;
-						$i <= ( ceil( $max_count_page / $per_page ) );
-						$i ++
-					): ?>
+					<?php for ( $i = 1; $i <= ( ceil( $max_count_page / $per_page ) ); $i ++ ): ?>
                         <li><a href="<?= add_query_arg( [ 'page' => $i ] ) ?>"><?= $i ?></a></li>
 					<?php endfor; ?>
-					<?php if ( intval( $query_var['page'] ) !== intval( ceil( $max_count_page / $per_page ) ) ): ?>
+					<?php if ( isset( $query_var['page'] ) && intval( $query_var['page'] ) !== intval( ceil( $max_count_page / $per_page ) ) ): ?>
                         <li><a href="<?= add_query_arg( [ 'page' => $query_var['page'] + 1 ] ) ?>"><span uk-pagination-next></span></a></li>
 					<?php endif; ?>
                 </ul>

@@ -34,6 +34,9 @@ class Ajax {
 		add_action( 'wp_ajax_nopriv_f1-account', [ $this, 'ajax_account' ] );
 		add_action( 'wp_ajax_f1-account', [ $this, 'ajax_account' ] );
 
+		add_action('wp_ajax_nopriv_f1-shopping', [$this, 'ajax_shopping']);
+		add_action('wp_ajax_f1-shopping', [$this, 'ajax_shopping']);
+
 	}
 
 	private function response( $status, $message = null, $data = null ) {
@@ -1251,6 +1254,7 @@ class Ajax {
 						"coach_height"         => CoachUserMeta::get_coach_property( $_POST['coach_id'] )['coach_height'],
 						"coach_weight"         => CoachUserMeta::get_coach_property( $_POST['coach_id'] )['coach_weight'],
 						"coach_image"          => CoachUserMeta::get_coach_property( $_POST['coach_id'] )['coach_image'],
+						"coach_explanation"    => CoachUserMeta::get_coach_property( $_POST['coach_id'] )['coach_explanation'],
 						"coach_information"    => CoachUserMeta::get_coach_property( $_POST['coach_id'] )['coach_information'],
 						"coach_program_prices" => CoachUserMeta::get_coach_property( $_POST['coach_id'] )['coach_program_prices']
 					] );
@@ -1283,6 +1287,7 @@ class Ajax {
 						"coach_height"         => CoachUserMeta::get_coach_property( $_POST['coach_id'] )['coach_height'],
 						"coach_weight"         => CoachUserMeta::get_coach_property( $_POST['coach_id'] )['coach_weight'],
 						"coach_image"          => CoachUserMeta::get_coach_property( $_POST['coach_id'] )['coach_image'],
+						"coach_explanation"    => CoachUserMeta::get_coach_property( $_POST['coach_id'] )['coach_explanation'],
 						"coach_id"             => $_POST['coach_id'],
 						"coach_information"    => CoachUserMeta::get_coach_property( $_POST['coach_id'] )['coach_information'],
 						"coach_program_prices" => CoachUserMeta::get_coach_property( $_POST['coach_id'] )['coach_program_prices']
@@ -1415,6 +1420,44 @@ class Ajax {
 			SettingOptions::update_setting( 'percent_site', $_POST['percent_site'] );
 
 			$this->response( "success", "تنظیمات با موفقیت بروزرسانی شد" );
+
+		}
+
+	}
+
+	public function ajax_shopping()
+	{
+
+		//check nonce
+		check_ajax_referer("f1_front_ajax_nonce", "nonce");
+
+		//send order
+		if ($_POST["command"] === 'order_program') {
+
+			if (!is_user_logged_in())
+				$this->response('redirect', null, home_url('login'));
+
+			if (!current_user_can('f1_athlete'))
+				$this->response('failed', "برای سفارش باید حتما به عنوان ورزشکار ثبت نام کنید");
+
+			$query = new WP_Query([
+				'page_id' => $_POST['post_id'],
+				'post_type' => 'coach',
+				'meta_key' => '_coach_property',
+				'meta_value' => serialize(strval($_POST['type_service'])),
+				'meta_compare' => 'LIKE'
+			]);
+
+			if (!$query->have_posts())
+				$this->response('reload');
+
+			$coach_id = CoachPostMeta::get_coach_property($_POST['post_id'])['coach_id'];
+			$order = $this->orders->check_activate_order(get_current_user_id(), $coach_id, $_POST['type_service']);
+
+			if ($order)
+				$this->response('failed', "در حال حاضر این سفارش در پنل کاربری برای شما فعال است");
+
+			$this->response('success', null, home_url("checkout"));
 
 		}
 

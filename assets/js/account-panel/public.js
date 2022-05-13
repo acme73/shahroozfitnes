@@ -141,19 +141,19 @@ class Public {
                     },
                     success(result) {
                         if (result.status === 'success') {
-                            UIkit.notification("<span class='fas fa-check-square f1-ml-7'></span>" + result.message,
+                            UIkit.notification("<span class='uk-margin-small-left' uk-icon='check'></span>" + result.message,
                                 {pos: 'bottom-left', status: 'success', timeout: 2000});
                             setTimeout(function () {
                                 window.location.replace(result.data);
                             }, 1500);
                         }
                         if (result.status === 'failed') {
-                            UIkit.notification("<span class='fas fa-exclamation-triangle f1-ml-7'></span>" + result.message,
+                            UIkit.notification("<span class='uk-margin-small-left' uk-icon='warning'></span>" + result.message,
                                 {pos: 'bottom-left', status: 'warning', timeout: 2000});
                         }
                     },
                     error() {
-                        UIkit.notification("<span class='fas fa-exclamation-triangle f1-ml-7'></span>" + "مشکل در ارتباط با پایگاه داده",
+                        UIkit.notification("<span class='uk-margin-small-left' uk-icon='warning'></span>" + "مشکل در ارتباط با پایگاه داده",
                             {pos: 'bottom-left', status: 'warning', timeout: 2000});
                     },
                     complete() {
@@ -194,12 +194,12 @@ class Public {
                             location.reload();
                         }
                         if (result.status === 'failed') {
-                            UIkit.notification("<span class='fas fa-exclamation-triangle f1-ml-7'></span>" + result.message,
+                            UIkit.notification("<span class='uk-margin-small-left' uk-icon='warning'></span>" + result.message,
                                 {pos: 'bottom-left', status: 'warning', timeout: 2000});
                         }
                     },
                     error() {
-                        UIkit.notification("<span class='fas fa-exclamation-triangle f1-ml-7'></span>" + "مشکل در ارتباط با پایگاه داده",
+                        UIkit.notification("<span class='uk-margin-small-left' uk-icon='warning'></span>" + "مشکل در ارتباط با پایگاه داده",
                             {pos: 'bottom-left', status: 'warning', timeout: 2000});
                     },
                     complete() {
@@ -238,12 +238,12 @@ class Public {
                             location.reload();
                         }
                         if (result.status === 'failed') {
-                            UIkit.notification("<span class='fas fa-exclamation-triangle f1-ml-7'></span>" + result.message,
+                            UIkit.notification("<span class='uk-margin-small-left' uk-icon='warning'></span>" + result.message,
                                 {pos: 'bottom-left', status: 'warning', timeout: 2000});
                         }
                     },
                     error() {
-                        UIkit.notification("<span class='fas fa-exclamation-triangle f1-ml-7'></span>" + "مشکل در ارتباط با پایگاه داده",
+                        UIkit.notification("<span class='uk-margin-small-left' uk-icon='warning'></span>" + "مشکل در ارتباط با پایگاه داده",
                             {pos: 'bottom-left', status: 'warning', timeout: 2000});
                     },
                     complete() {

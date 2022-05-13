@@ -14,6 +14,12 @@ class Routing {
 			'action'     => 'index'
 		],
 		[
+			'route'      => '/checkout/',
+			'module'     => 'theme',
+			'controller' => 'DefaultController',
+			'action'     => 'checkout'
+		],
+		[
 			'route'      => "/account\/support\/tickets/",
 			'module'     => 'theme',
 			'controller' => 'AccountController',

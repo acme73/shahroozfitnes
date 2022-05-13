@@ -270,7 +270,8 @@ use App\utils\View;
 											foreach ( $coach_property['coach_branch'] as $value ):
 												selected( $value, $branch->term_id );
 											endforeach;
-										endif; ?>><?= $branch->name ?></option>
+										endif; ?>><?= $branch->name ?>
+                                    </option>
 								<?php endforeach; ?>
                             </select>
                         </div>

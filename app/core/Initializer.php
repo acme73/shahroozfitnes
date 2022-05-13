@@ -3,27 +3,36 @@
 namespace App\core;
 
 use App\theme\repository\UsersRepository;
+use App\theme\services\PaymentsOption;
 use App\theme\services\SettingOptions;
 
 defined( 'ABSPATH' ) || die( "No Access" );
 
 class Initializer {
 
-	public function __construct() {
 
-		add_action( 'init', [ $this, 'coach_post_type_init' ] );
-		add_action( 'init', [ $this, 'sports_branches_taxonomy_init' ], 0 );
-		add_action( 'init', [ $this, 'rewrite_rules' ] );
-		add_filter( 'query_vars', [ $this, 'query_vars' ] );
+	public function __construct() {
 
 		add_action( 'after_switch_theme', [ $this, 'activate_theme' ] );
 		add_action( 'switch_theme', [ $this, 'deactivate_theme' ] );
-		add_action( 'after_setup_theme', [ $this, 'setup_theme' ] );
+
+		add_action( 'init', [ $this, 'initialize_setting' ] );
+		add_action( 'init', [ $this, 'initialize_payment' ] );
+
+
 		add_action( 'admin_menu', [ $this, 'linked_admin' ] );
 
+
+		add_action( 'init', [ $this, 'rewrite_rules' ] );
+
+
+		add_action( 'init', [ $this, 'coach_post_type_init' ] );
+		add_action( 'init', [ $this, 'sports_branches_taxonomy_init' ], 0 );
+
+
+		add_action( 'after_setup_theme', [ $this, 'setup_theme' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'register_asset_front' ] );
 		add_action( 'admin_head', [ $this, 'register_asset_admin' ] );
-		add_action( 'init', [ $this, 'initialize_setting' ] );
 
 	}
 
@@ -33,11 +42,11 @@ class Initializer {
 		/**add user roles in WordPress**/
 		$this->user_roles();
 
+		//add rewrite rule
+		$this->rewrite_rules();
+
 		/**add coach in postType WordPress**/
 		$this->coach_post_type_init();
-
-		/**add rewrite rule in WordPress**/
-		$this->rewrite_rules();
 
 		flush_rewrite_rules();
 
@@ -57,11 +66,57 @@ class Initializer {
 
 	}
 
+	public function theme_support() {
+
+		add_theme_support( 'title-tag' );
+
+		add_theme_support( 'post-thumbnails' );
+
+		add_image_size( "blog-thumbnail", 417, 235 );
+
+	}
+
+
+	public function rewrite_rules() {
+		add_rewrite_rule(
+			'^checkout$',
+			'index.php?pagename=f1_checkout',
+			'top'
+		);
+
+		add_rewrite_rule(
+			'^verify$',
+			'index.php?pagename=f1_verify',
+			'top'
+		);
+
+		add_rewrite_rule(
+			'^filter_coach$',
+			'index.php?pagename=f1_filter_coach',
+			'top'
+		);
+	}
+
+
 	public function initialize_setting() {
 
 		//init percent site
 		if ( is_null( SettingOptions::get_settings()['percent_site'] ) ) {
 			SettingOptions::update_setting( "percent_site", 10 );
+		}
+
+	}
+
+	public function initialize_payment() {
+
+		//init irankish
+		if ( empty( PaymentsOption::get_payments()['irankish'] ) ) {
+			PaymentsOption::update_payment( 'irankish', [
+				'name_payment' => 'درگاه ایران کیش',
+				'icon_payment' => F1_THEME_ASSET_URL . "images/payment/irankish_logo.png",
+				'active'       => 1,
+				'api'          => ''
+			] );
 		}
 
 	}
@@ -99,49 +154,9 @@ class Initializer {
 
 	}
 
-	public function rewrite_rules() {
-
-		add_rewrite_rule(
-			'^login$',
-			'index.php?pagename=f1_login',
-			'top'
-		);
-
-		add_rewrite_rule(
-			'^account$',
-			'index.php?pagename=f1_account',
-			'top'
-		);
-
-		add_rewrite_rule(
-			'^checkout$',
-			'index.php?pagename=f1_checkout',
-			'top'
-		);
-
-		add_rewrite_rule(
-			'^verify$',
-			'index.php?pagename=f1_verify',
-			'top'
-		);
-
-		add_rewrite_rule(
-			'^filter-coach$',
-			'index.php?pagename=f1_filter_coach',
-			'top'
-		);
-
-	}
-
-	public function query_vars( $query_vars ) {
-		$query_vars[] = 'f1_menu';
-		$query_vars[] = 'f1_submenu';
-
-		return $query_vars;
-	}
-
 
 	public function coach_post_type_init() {
+
 		$labels = array(
 			'name'                  => _x( 'مربی ها', 'Post type general name', 'textdomain' ),
 			'singular_name'         => _x( 'مربی', 'Post type singular name', 'textdomain' ),
@@ -218,32 +233,17 @@ class Initializer {
 	}
 
 
-	public function theme_support() {
-
-		add_theme_support( 'title-tag' );
-
-		add_theme_support( 'post-thumbnails' );
-
-	}
-
-
 	public function register_asset_front() {
 
 		//add css in Front
 		wp_enqueue_style( "f1-main", F1_THEME_ASSET_URL . 'css/main.css', [], F1_THEME_VERSION, 'all' );
-		wp_enqueue_script( 'f1-uikit', F1_THEME_ASSET_URL . 'js/uikit.min.js', [ 'jquery' ], F1_THEME_VERSION, true );
-		wp_enqueue_script( 'f1-uikit-icons', F1_THEME_ASSET_URL . 'js/uikit-icons.min.js', [ 'jquery' ], F1_THEME_VERSION, true );
-
-
-		//add Asset in Front
-		/*if ( ! is_admin() ) {
-			wp_enqueue_style( "f1-front", F1_THEME_ASSET_URL . 'front/css/front.css', [], F1_THEME_VERSION, 'all' );
-			wp_enqueue_script( 'f1-front', F1_THEME_ASSET_URL . 'front/js/front.js', [ 'jquery' ], F1_THEME_VERSION, true );
-			wp_localize_script( 'f1-front', 'f1_front_data', [
-				"ajax_url" => admin_url( "admin-ajax.php" ),
-				"nonce"    => wp_create_nonce( "f1_front_ajax_nonce" )
-			] );
-		}*/
+		wp_enqueue_script( 'f1-uikit', F1_THEME_ASSET_URL . 'js/uikit.min.js', [], F1_THEME_VERSION, true );
+		wp_enqueue_script( 'f1-uikit-icons', F1_THEME_ASSET_URL . 'js/uikit-icons.min.js', [], F1_THEME_VERSION, true );
+		wp_enqueue_script( 'f1-front', F1_THEME_ASSET_URL . 'js/front.js', [ 'jquery' ], F1_THEME_VERSION, true );
+		wp_localize_script( 'f1-front', 'f1_front_data', [
+			"ajax_url" => admin_url( "admin-ajax.php" ),
+			"nonce"    => wp_create_nonce( "f1_front_ajax_nonce" )
+		] );
 
 	}
 

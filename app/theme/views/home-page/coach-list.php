@@ -4,17 +4,21 @@ homepage coach list rtl
 
 -->
 
-<section class="bg-light py-5">
-    <div class="container text-center">
-        <h4 class="fw-bold mb-3">مربی‌های متخصص و با‌تجربه ما</h4>
-        <div class="row justify-content-center">
+<section class="uk-section uk-section-small uk-background-muted">
+    <div class="uk-container uk-text-center">
+
+        <h4 class="uk-text-bold uk-margin-medium-bottom">مربی‌های متخصص و با‌تجربه ما</h4>
+
+        <div class="uk-child-width-1-2 uk-child-width-1-3@m" uk-grid>
 			<?php for ( $x = 0; $x < 9; $x ++ ) : ?>
-                <div class="col-6 col-lg-4 gy-4 text-center">
-                    <img src="<?= F1_THEME_ASSET_URL . "images/home-page/profile-coach.png" ?>" class="img-fluid rounded-circle border border-primary border-3" width="170">
-                    <p class="fw-bold mb-0 mt-2">شهروز رحیمی</p>
+                <div>
+                    <img src="<?= F1_THEME_ASSET_URL . "images/home-page/profile-coach.png" ?>" class="uk-border-circle f1-border-primary f1-border-solid f1-border-3" width="170">
+                    <p class="uk-text-bold uk-text-secondary">شهروز رحیمی</p>
                 </div>
 			<?php endfor; ?>
         </div>
-        <button class="btn btn-primary rounded-pill mt-5">مشاهده همه مربی ها</button>
+
+        <a href="<?= home_url() . "/coach" ?>" class="uk-button uk-button-primary uk-border-pill uk-margin-medium-top">مشاهده همه مربی ها</a>
+
     </div>
 </section>

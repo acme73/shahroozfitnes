@@ -1,8 +1,22 @@
-<div class="row">
-	<?php for ( $x = 0; $x < 9; $x ++ ) : ?>
-        <div class="col-lg-4 gy-4 text-center">
-            <img src="<?= F1_THEME_ASSET_URL . "images/home-page/profile-coach.png" ?>" class="img-fluid rounded-circle border border-primary border-3" width="170">
-            <p class="fw-bold mb-0 mt-2">شهروز رحیمی</p>
-        </div>
-	<?php endfor; ?>
+<?php
+
+use App\theme\services\CoachPostMeta;
+
+?>
+
+<div uk-grid>
+
+	<?php if ( have_posts() ): ?>
+		<?php while ( have_posts() ): the_post(); ?>
+
+            <div class="uk-width-1-3 uk-text-center">
+                <a class="uk-text-decoration-none" href="<?php echo get_the_permalink() ?>">
+                    <img style="height: 170px!important;" src="<?php echo esc_url( CoachPostMeta::get_coach_property( get_the_ID() )["coach_image"] ) ?>" class="uk-border-circle f1-border-3 f1-border-solid f1-border-primary uk-object-cover" width="170">
+                    <p class="uk-text-bold f1-text-black uk-margin-small-top"><?= get_the_title() ?></p>
+                </a>
+            </div>
+
+		<?php endwhile; ?>
+	<?php endif; ?>
+
 </div>

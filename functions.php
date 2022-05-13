@@ -2,11 +2,13 @@
 
 use App\core\App;
 use App\core\Initializer;
+use App\core\Rewrite;
 use App\theme\services\Ajax;
 use App\theme\services\CoachPropertyMetaBox;
 
 require "constant.php";
 require "vendor/autoload.php";
+
 
 new Initializer();
 new Ajax();
@@ -18,6 +20,7 @@ if ( is_admin() ) {
 }
 
 new App();
+new Rewrite();
 
 
 
