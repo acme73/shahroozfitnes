@@ -2,11 +2,13 @@
 
 namespace App\theme\services;
 
+use App\theme\repository\AthleteBody;
 use App\theme\repository\CoachBalanceRepository;
 use App\theme\repository\FinanceSettlementRepository;
 use App\theme\repository\OrderRepository;
 use App\theme\repository\OTP;
 use App\theme\repository\TicketRepository;
+use DateTime;
 use WP_Query;
 
 defined( 'ABSPATH' ) || die( "No Access" );
@@ -22,9 +24,9 @@ class Ajax {
 
 	public function __construct() {
 
-		$this->otp    = new OTP();
-		$this->ticket = new TicketRepository();
-		//$this->athlete_body = new AthleteBody();
+		$this->otp          = new OTP();
+		$this->ticket       = new TicketRepository();
+		$this->athlete_body = new AthleteBody();
 		//$this->chats = new ChatRepository();
 		$this->orders = new OrderRepository();
 		//$this->coach_rate = new CoachRateRepository();
@@ -930,10 +932,11 @@ class Ajax {
 				$this->response( "failed", "وزن خود را به عدد وارد کنید" );
 			}
 
-			$now         = new DateTime( "now", wp_timezone() );
-			$last_update = new DateTime( $this->athlete_body->get_athlete_body( get_current_user_id(), true )->last_update, wp_timezone() );
+			$now          = new DateTime( "now", wp_timezone() );
+			$athlete_body = $this->athlete_body->get_athlete_body( get_current_user_id(), true );
+			$last_update  = new DateTime( $athlete_body->last_update, wp_timezone() );
 
-			if ( $last_update->diff( $now )->days < 31 ) {
+			if ( $last_update->diff( $now )->days < 31 && ! is_null( $athlete_body ) ) {
 				$this->response( "failed", "برای ثبت اطلاعات جدید " . ( 31 - ( $last_update->diff( $now )->days ) ) . " روز باقی مانده است" );
 			}
 
