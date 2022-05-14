@@ -5,12 +5,14 @@ use App\core\Initializer;
 use App\core\Rewrite;
 use App\theme\services\Ajax;
 use App\theme\services\CoachPropertyMetaBox;
+use App\theme\services\Hooks;
 
 require "constant.php";
 require "vendor/autoload.php";
 
 
 new Initializer();
+new Hooks();
 new Ajax();
 if ( is_admin() ) {
 

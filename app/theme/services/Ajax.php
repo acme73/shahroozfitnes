@@ -129,9 +129,11 @@ class Ajax {
 
 			$this->otp->set_OTP( "98" . $_POST['user_phone_number'] );
 
-
 			//SMS here..
-
+			do_action( "f1_send_otp_code",
+				[ $_POST['user_phone_number'] ],
+				$this->otp->get_OTP( "98" . $_POST['user_phone_number'] )
+			);
 
 			$this->response( "success", "رمز یکبار مصرف با موفقیت ارسال شد" );
 
@@ -158,7 +160,11 @@ class Ajax {
 
 			$this->otp->set_OTP( "98" . $_POST['user_phone_number'] );
 
-			//SMS Here...
+			//SMS here..
+			do_action( "f1_send_otp_code",
+				[ $_POST['user_phone_number'] ],
+				$this->otp->get_OTP( "98" . $_POST['user_phone_number'] )
+			);
 
 			$this->response( "success", "رمز یکبار مصرف با موفقیت ارسال شد" );
 

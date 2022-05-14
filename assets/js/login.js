@@ -268,7 +268,7 @@ class Login {
                                             $("<span>", {class: "uk-text-meta", id: "f1_timer"})
                                         )
                                     );
-                                    Login.prototype.resend_otp_in_register(5, "#f1_timer");
+                                    Login.prototype.resend_otp_in_register(120, "#f1_timer");
                                 }
                                 if (result.status === 'failed') {
                                     UIkit.notification("<span class='uk-margin-small-left' uk-icon='warning'></span>" + result.message,
@@ -322,7 +322,7 @@ class Login {
                                             $("<span>", {class: "uk-text-meta", id: "f1_timer"})
                                         )
                                     );
-                                    Login.prototype.resend_otp_in_change_password(5, "#f1_timer");
+                                    Login.prototype.resend_otp_in_change_password(120, "#f1_timer");
                                 }
                                 if (result.status === 'failed') {
                                     UIkit.notification("<span class='uk-margin-small-left' uk-icon='warning'></span>" + result.message,
