@@ -10,7 +10,7 @@ coach gallery
         <hr class="f1-border-2 uk-margin-remove-top uk-margin-small-bottom uk-width-1-6"/>
         <div class="uk-child-width-1-3" uk-grid>
 			<?php for ( $x = 0; $x < 6; $x ++ ): ?>
-                <img src="<?= F1_THEME_ASSET_URL . "images/partials/placeholder" ?>" width="80">
+                <img src="<?= F1_THEME_ASSET_URL . "images/partials/placeholder.svg" ?>" width="80">
 			<?php endfor; ?>
         </div>
     </div>
