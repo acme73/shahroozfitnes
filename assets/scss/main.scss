@@ -310,6 +310,12 @@ h1, h2, h3, h4, h5, h6, input, textarea, div, a {
 
 /*endregion*/
 
+/*regionOffcanvas*/
+.uk-offcanvas-bar .uk-nav-default .uk-nav-divider{
+  border-top-color:  #5b5b5b !important;
+}
+/*endregion*/
+
 /*regionNotification */
 
 .uk-notification {
@@ -509,6 +515,7 @@ h1, h2, h3, h4, h5, h6, input, textarea, div, a {
 .f1-account-sidebar ul.uk-nav-default li .uk-nav-sub a {
   padding: 6px 0;
 }
+
 
 .f1-account-content {
   margin-top: 52px;

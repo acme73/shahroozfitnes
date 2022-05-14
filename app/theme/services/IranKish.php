@@ -19,10 +19,20 @@ class IranKish extends BasePayment {
 
 	public function send_Request( $data ) {
 
+		$params = [
+			'api'          => $this->pay_option['api'],
+			'amount'       => $data['amount'],
+			'redirect'     => urlencode( home_url() . '/verify?payment=irankish' ),
+			'mobile'       => $data['mobile'],
+			'factorNumber' => $data['factorNumber'],
+			'description'  => $data['description']
+		];
+
+		return true;
 
 	}
 
 	public function verify_Request( $data ) {
-		// TODO: Implement verify_Request() method.
+
 	}
 }

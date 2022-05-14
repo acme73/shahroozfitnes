@@ -54,7 +54,7 @@ use App\utils\View;
 
                 <div uk-grid>
 
-                    <div class="uk-width-1-3">
+                    <div class="uk-width-1-1 uk-width-1-3@m">
 
                         <div style="position: sticky;top: 60px" class="uk-card uk-card-small uk-text-small uk-card-default uk-card-body f1-border-radius-10">
 

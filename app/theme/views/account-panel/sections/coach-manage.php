@@ -32,7 +32,7 @@ use App\utils\View;
 <?php View::render( "app.theme.views.account-panel.partials.header", [
 	"current_user" => $current_user,
 	"tickets"      => $tickets,
-	"users"        => $users,
+	"users"        => $users
 ] ); ?>
 
 
