@@ -17,7 +17,7 @@
                         </a>
                     </div>
                     <div>
-                        <a class="uk-button-link" href="#">
+                        <a class="uk-button-link" href="https://www.instagram.com/shahroozfitness">
                             <div class="uk-flex uk-flex-middle uk-flex-center">
                                 <img class="uk-margin-small-left" src="<?= F1_THEME_ASSET_URL . "images/partials/footer-icon-instagram.svg" ?>" width="20"/>
                                 <span class="uk-text-small">صفحه اینستاگرام</span>

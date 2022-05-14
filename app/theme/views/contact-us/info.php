@@ -17,7 +17,7 @@ contact us info
                 <img src="<?= F1_THEME_ASSET_URL . "images/contact-us/contact-us-icon-instagram.svg" ?>" width="40">
                 <p class="uk-text-bold f1-text-black uk-margin-small-top">صفحه اینستاگرام ما</p>
                 <p class="f1-text-black">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
-                <button class="uk-button uk-button-small uk-button-primary uk-border-pill">مشاهده صفحه</button>
+                <a href="https://www.instagram.com/shahroozfitness" class="uk-button uk-button-small uk-button-primary uk-border-pill">مشاهده صفحه</a>
             </div>
         </div>
     </div>

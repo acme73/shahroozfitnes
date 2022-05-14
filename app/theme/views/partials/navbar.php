@@ -55,7 +55,9 @@ if ( current_user_can( "f1_athlete" ) ) {
                 </form>
 
                 <!--instagram link-->
-                <img class="uk-margin-small-left uk-visible@m" src="<?= F1_THEME_ASSET_URL . "images/partials/header-instagram.svg" ?>" width="30" alt="instagram"/>
+                <a href="https://www.instagram.com/shahroozfitness">
+                    <img class="uk-margin-small-left uk-visible@m" src="<?= F1_THEME_ASSET_URL . "images/partials/header-instagram.svg" ?>" width="30" alt="instagram"/>
+                </a>
 
                 <!--account button-->
 				<?php if ( is_user_logged_in() ): ?>
