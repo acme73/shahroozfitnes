@@ -27,10 +27,10 @@ if ( current_user_can( "f1_athlete" ) ) {
 
                 <!--Menu-->
                 <ul class="uk-navbar-nav uk-visible@m">
-                    <li class="uk-active"><a href="<?= home_url() ?>">صفحه نخست</a></li>
-                    <li><a href="<?= home_url( 'blog' ) ?>">مجله آموزشی</a></li>
-                    <li><a href="<?= home_url( 'coach' ) ?>">مربی‌ها</a></li>
-                    <li><a href="<?= home_url( 'contact-us' ) ?>">تماس با ما</a>
+                    <li id="f1_nav_home"><a href="<?= home_url() ?>">صفحه نخست</a></li>
+                    <li id="f1_nav_blog"><a href="<?= home_url( 'blog' ) ?>">مجله آموزشی</a></li>
+                    <li id="f1_nav_coach"><a href="<?= home_url( 'coach' ) ?>">مربی‌ها</a></li>
+                    <li id="f1_nav_contact_us"><a href="<?= home_url( 'contact-us' ) ?>">تماس با ما</a>
                         <div class="uk-navbar-dropdown">
                             <ul class="uk-nav uk-navbar-dropdown-nav">
                                 <li><a href="#">همکاری با ما</a></li>
@@ -39,7 +39,7 @@ if ( current_user_can( "f1_athlete" ) ) {
                             </ul>
                         </div>
                     </li>
-                    <li><a href="<?= home_url( 'about-us' ) ?>">درباره ما</a></li>
+                    <li id="f1_nav_about_us"><a href="<?= home_url( 'about-us' ) ?>">درباره ما</a></li>
                 </ul>
 
             </div>

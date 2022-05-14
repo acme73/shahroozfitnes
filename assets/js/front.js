@@ -19,25 +19,22 @@ class Front {
             //header
             var current_menu = window.location.pathname;
             switch (current_menu) {
-                case "" :
-                    $("#f1_nav_home").addClass("uk-active");
+                case "/" :
+                    $("#f1_nav_home").addClass("uk-active uk-text-bold");
                     break;
                 case "/coach/":
-                    $("#f1_nav_coach").addClass("uk-active");
+                    $("#f1_nav_coach").addClass("uk-active uk-text-bold");
                     break;
                 case  '/blog/' :
-                    $("#f1_nav_blog").addClass("uk-active");
+                    $("#f1_nav_blog").addClass("uk-active uk-text-bold");
+                    break;
+                case  '/contact-us/' :
+                    $("#f1_nav_contact_us").addClass("uk-active uk-text-bold");
+                    break;
+                case  '/about-us/' :
+                    $("#f1_nav_about_us").addClass("uk-active uk-text-bold");
                     break;
             }
-            if (current_menu === '/shahroozfitness/')
-                $("#f1_header").addClass('f1-home-nav');
-
-            //counterup
-            $('.counterup').counterUp({
-                delay: 10,
-                time: 1000
-            });
-
         });
     }
 
