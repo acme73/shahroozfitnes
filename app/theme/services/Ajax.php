@@ -34,8 +34,8 @@ class Ajax {
 		add_action( 'wp_ajax_nopriv_f1-account', [ $this, 'ajax_account' ] );
 		add_action( 'wp_ajax_f1-account', [ $this, 'ajax_account' ] );
 
-		add_action('wp_ajax_nopriv_f1-shopping', [$this, 'ajax_shopping']);
-		add_action('wp_ajax_f1-shopping', [$this, 'ajax_shopping']);
+		add_action( 'wp_ajax_nopriv_f1-shopping', [ $this, 'ajax_shopping' ] );
+		add_action( 'wp_ajax_f1-shopping', [ $this, 'ajax_shopping' ] );
 
 	}
 
@@ -45,7 +45,7 @@ class Ajax {
 
 	private function captcha( $token, $action ): bool {
 		$url_verify = "https://www.google.com/recaptcha/api/siteverify";
-		$secret_key = "6LdXKrkcAAAAABandGKWYDjd66J8Mz2ceCsPJFzI";
+		$secret_key = "6Lcw380cAAAAANdduMzo5G3FMKyOqj2ua8kPZgIc";
 		$response   = file_get_contents( $url_verify . "?secret=" . $secret_key . "&response=" . $token );
 		$response   = json_decode( $response );
 
@@ -86,8 +86,9 @@ class Ajax {
 		//login or register
 		if ( $_POST["command"] === 'login_or_register' ) {
 
-			/*if (!($this->captcha($_POST['token'], $_POST["command"])))
-				$this->response("failed", "خطا در تایید کپچا");*/
+			if ( ! ( $this->captcha( $_POST['token'], $_POST["command"] ) ) ) {
+				$this->response( "failed", "خطا در تایید کپچا" );
+			}
 
 			if ( empty( $_POST['user_phone_number'] ) ) {
 				$this->response( "failed", "شماره موبایل نباید خالی باشد" );
@@ -102,14 +103,15 @@ class Ajax {
 			}
 
 			$this->response( "login" );
+
 		}
 
 		//request OTP in register
 		if ( $_POST["command"] === 'request_otp_in_register' ) {
 
-			/*if ( ! ( $this->captcha( $_POST['token'], $_POST["command"] ) ) ) {
+			if ( ! ( $this->captcha( $_POST['token'], $_POST["command"] ) ) ) {
 				$this->response( "failed", "خطا در تایید کپچا" );
-			}*/
+			}
 
 			if ( empty( $_POST['user_phone_number'] ) ) {
 				$this->response( "failed", "شماره موبایل نباید خالی باشد" );
@@ -125,7 +127,9 @@ class Ajax {
 
 			$this->otp->set_OTP( "98" . $_POST['user_phone_number'] );
 
-			//SMS Here...
+
+			//SMS here..
+
 
 			$this->response( "success", "رمز یکبار مصرف با موفقیت ارسال شد" );
 
@@ -134,9 +138,9 @@ class Ajax {
 		//request OTP in change password
 		if ( $_POST["command"] === 'request_otp_in_change_password' ) {
 
-			/*if ( ! ( $this->captcha( $_POST['token'], $_POST["command"] ) ) ) {
+			if ( ! ( $this->captcha( $_POST['token'], $_POST["command"] ) ) ) {
 				$this->response( "failed", "خطا در تایید کپچا" );
-			}*/
+			}
 
 			if ( empty( $_POST['user_phone_number'] ) ) {
 				$this->response( "failed", "شماره موبایل نباید خالی باشد" );
@@ -161,9 +165,9 @@ class Ajax {
 		//register
 		if ( $_POST["command"] === 'register' ) {
 
-			/*if ( ! ( $this->captcha( $_POST['token'], $_POST["command"] ) ) ) {
+			if ( ! ( $this->captcha( $_POST['token'], $_POST["command"] ) ) ) {
 				$this->response( "failed", "خطا در تایید کپچا" );
-			}*/
+			}
 
 			if ( empty( $_POST['user_name'] ) ) {
 				$this->response( "failed", "نام خود را وارد کنید" );
@@ -261,9 +265,9 @@ class Ajax {
 		//login
 		if ( $_POST["command"] === 'login' ) {
 
-			/*if ( ! ( $this->captcha( $_POST['token'], $_POST["command"] ) ) ) {
+			if ( ! ( $this->captcha( $_POST['token'], $_POST["command"] ) ) ) {
 				$this->response( "failed", "خطا در تایید کپچا" );
-			}*/
+			}
 
 			if ( empty( $_POST['user_phone_number'] ) ) {
 				$this->response( "failed", "شماره موبایل خود را وارد کنید" );
@@ -313,9 +317,9 @@ class Ajax {
 		//change password
 		if ( $_POST["command"] === 'change_password' ) {
 
-			/*if ( ! ( $this->captcha( $_POST['token'], $_POST["command"] ) ) ) {
+			if ( ! ( $this->captcha( $_POST['token'], $_POST["command"] ) ) ) {
 				$this->response( "failed", "خطا در تایید کپچا" );
-			}*/
+			}
 
 			if ( empty( $_POST['user_phone_number'] ) ) {
 				$this->response( "failed", "شماره موبایل خود را وارد کنید" );
@@ -1425,39 +1429,42 @@ class Ajax {
 
 	}
 
-	public function ajax_shopping()
-	{
+	public function ajax_shopping() {
 
 		//check nonce
-		check_ajax_referer("f1_front_ajax_nonce", "nonce");
+		check_ajax_referer( "f1_front_ajax_nonce", "nonce" );
 
 		//send order
-		if ($_POST["command"] === 'order_program') {
+		if ( $_POST["command"] === 'order_program' ) {
 
-			if (!is_user_logged_in())
-				$this->response('redirect', null, home_url('login'));
+			if ( ! is_user_logged_in() ) {
+				$this->response( 'redirect', null, home_url( 'login' ) );
+			}
 
-			if (!current_user_can('f1_athlete'))
-				$this->response('failed', "برای سفارش باید حتما به عنوان ورزشکار ثبت نام کنید");
+			if ( ! current_user_can( 'f1_athlete' ) ) {
+				$this->response( 'failed', "برای سفارش باید حتما به عنوان ورزشکار ثبت نام کنید" );
+			}
 
-			$query = new WP_Query([
-				'page_id' => $_POST['post_id'],
-				'post_type' => 'coach',
-				'meta_key' => '_coach_property',
-				'meta_value' => serialize(strval($_POST['type_service'])),
+			$query = new WP_Query( [
+				'page_id'      => $_POST['post_id'],
+				'post_type'    => 'coach',
+				'meta_key'     => '_coach_property',
+				'meta_value'   => serialize( strval( $_POST['type_service'] ) ),
 				'meta_compare' => 'LIKE'
-			]);
+			] );
 
-			if (!$query->have_posts())
-				$this->response('reload');
+			if ( ! $query->have_posts() ) {
+				$this->response( 'reload' );
+			}
 
-			$coach_id = CoachPostMeta::get_coach_property($_POST['post_id'])['coach_id'];
-			$order = $this->orders->check_activate_order(get_current_user_id(), $coach_id, $_POST['type_service']);
+			$coach_id = CoachPostMeta::get_coach_property( $_POST['post_id'] )['coach_id'];
+			$order    = $this->orders->check_activate_order( get_current_user_id(), $coach_id, $_POST['type_service'] );
 
-			if ($order)
-				$this->response('failed', "در حال حاضر این سفارش در پنل کاربری برای شما فعال است");
+			if ( $order ) {
+				$this->response( 'failed', "در حال حاضر این سفارش در پنل کاربری برای شما فعال است" );
+			}
 
-			$this->response('success', null, home_url("checkout"));
+			$this->response( 'success', null, home_url( "checkout" ) );
 
 		}
 

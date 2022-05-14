@@ -37,7 +37,7 @@ class LoginController {
 	}
 
 	public function register_assets() {
-		wp_enqueue_script( 'f1-recaptcha-google', "https://www.google.com/recaptcha/api.js?render=6LdXKrkcAAAAAK8cKgpNHjEz3V9_12-2bp7YqAt7", null, null, true );
+		wp_enqueue_script( 'f1-recaptcha-google', "https://www.google.com/recaptcha/api.js?render=6Lcw380cAAAAAMZQueju19ZVuqGLgtUHxSiw-ujO", null, null, true );
 		wp_enqueue_script( 'f1-login', F1_THEME_ASSET_URL . 'js/login.js', [ 'jquery' ], F1_THEME_VERSION, true );
 		wp_localize_script( 'f1-login', 'f1_login_data', [
 			"ajax_url" => admin_url( "admin-ajax.php" ),
