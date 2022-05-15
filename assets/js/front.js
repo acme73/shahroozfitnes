@@ -130,10 +130,10 @@ class Front {
             /*Calculate BMI*/
             $(document).on("click", "#f1_calculate_bmi", function () {
 
-                var regExp = new RegExp('^[0-9]+$');
+                var regExp = new RegExp('^\\d+(\\.\\d+)?$');
                 var height = $("#f1_bmi_height").val();
                 var weight = $("#f1_bmi_weight").val();
-                var formula = Math.round(weight / Math.pow(height / 100, 2));
+                var formula = (weight / Math.pow(height / 100, 2)).toFixed(1);
 
                 if (!regExp.test(height.toString()) || !regExp.test(weight.toString())) {
                     UIkit.notification("<span class='uk-margin-small-left' uk-icon='warning'></span>" + "مقادیر را به عدد وارد کنید!",
