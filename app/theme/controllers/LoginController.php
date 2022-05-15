@@ -21,6 +21,10 @@ class LoginController {
 		//check user logged
 		if ( is_user_logged_in() ) {
 
+			if ( current_user_can( "administrator" ) ) {
+				wp_safe_redirect( home_url( 'account/coach/manage' ) );
+			}
+
 			if ( current_user_can( "f1_coach" ) ) {
 				wp_safe_redirect( home_url( 'account/order/athlete' ) );
 			}
