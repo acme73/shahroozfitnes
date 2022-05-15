@@ -20,22 +20,22 @@ homepage calculate bmi rtl
                         <span class="uk-text-bold f1-text-black" style="width: 8px;display: block"> قد:</span>
                     </div>
                     <div class="uk-width-expand">
-                        <input class="uk-input uk-border-pill f1-border-3 f1-border-primary" style="width: 320px" type="text" placeholder="به سانتیمتر (مثلا:180)">
+                        <input id="f1_bmi_height" class="uk-input uk-border-pill f1-border-3 f1-border-primary" style="width: 320px" type="text" placeholder="به سانتیمتر (مثلا:180)">
                     </div>
                     <div class="uk-width-1-1 uk-margin-remove"></div>
                     <div class="uk-width-auto">
                         <span class="uk-text-bold f1-text-black" style="width: 8px;display: block"> وزن:</span>
                     </div>
                     <div class="uk-width-expand">
-                        <input class="uk-input uk-border-pill f1-border-3 f1-border-primary" style="width: 320px" type="text" placeholder="به کیلوگرم (مثلا:82.5)">
+                        <input id="f1_bmi_weight" class="uk-input uk-border-pill f1-border-3 f1-border-primary" style="width: 320px" type="text" placeholder="به کیلوگرم (مثلا:82.5)">
                     </div>
                     <div class="uk-width-1-1 uk-margin-remove"></div>
                     <div class="uk-width-expand uk-text-center">
-                        <button class="uk-button uk-button-primary uk-border-pill uk-margin-small-top">محاسبه BMI</button>
+                        <button id="f1_calculate_bmi" class="uk-button uk-button-primary uk-border-pill uk-margin-small-top">محاسبه BMI</button>
                     </div>
                 </div>
             </div>
-            <div class="uk-width-1-2@m uk-flex-first uk-flex-last@m ">
+            <div class="uk-width-1-2@m uk-flex-first uk-flex-last@m">
                 <img src="<?= F1_THEME_ASSET_URL . "images/home-page/firstpage-bmi-02.svg" ?>" width="450"/>
             </div>
         </div>

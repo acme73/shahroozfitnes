@@ -59,7 +59,6 @@ class Front {
                 Front.prototype.counterup(this, 0, end)
             });*/
 
-
         });
     }
 
@@ -125,6 +124,24 @@ class Front {
                         self.attr('disabled', false);
                     }
                 });
+
+            });
+
+            /*Calculate BMI*/
+            $(document).on("click", "#f1_calculate_bmi", function () {
+
+                var regExp = new RegExp('^[0-9]+$');
+                var height = $("#f1_bmi_height").val();
+                var weight = $("#f1_bmi_weight").val();
+                var formula = Math.round(weight / Math.pow(height / 100, 2));
+
+                if (!regExp.test(height.toString()) || !regExp.test(weight.toString())) {
+                    UIkit.notification("<span class='uk-margin-small-left' uk-icon='warning'></span>" + "مقادیر را به عدد وارد کنید!",
+                        {pos: 'bottom-left', status: 'warning', timeout: 2000});
+                } else {
+                    UIkit.notification("<span></span>" + "شاخص توده بدنی شما برابر است با: " + "<span style='font-size: 20px'>" + formula + "</span>",
+                        {pos: 'top-center', status: 'success', timeout: 10000});
+                }
 
             });
 
