@@ -13,6 +13,18 @@ class Front {
         this.onclick();
     }
 
+    counterup(target, start, end) {
+        start += 1;
+        setTimeout(function () {
+
+            if (start <= end) {
+                Front.prototype.counterup(target, start, end);
+                target.text("+" + start);
+            }
+
+        }, 1);
+    }
+
     init() {
         jQuery(document).ready(function ($) {
 
@@ -35,6 +47,19 @@ class Front {
                     $("#f1_nav_about_us").addClass("uk-active uk-text-bold");
                     break;
             }
+
+            //counter
+            var counters = $(".f1-counter");
+            $.each(counters, function (index, item) {
+                var end = $(item).data("count");
+                Front.prototype.counterup($(item), 0, end)
+            });
+            /*counters.forEach(function () {
+                var end = this.data("count");
+                Front.prototype.counterup(this, 0, end)
+            });*/
+
+
         });
     }
 

@@ -14,15 +14,15 @@ homepage intro rtl
                         <p class="uk-margin-remove uk-text-bold uk-text-secondary">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
                     </div>
                     <div class="uk-width-1-3 uk-width-1-4@m">
-                        <p class="uk-margin-remove uk-text-primary uk-text-bolder uk-text-large">10+</p>
+                        <p class="uk-margin-remove uk-text-primary uk-text-bolder uk-text-large f1-counter" data-count="10">0+</p>
                         <p class="uk-margin-remove uk-text-bold uk-text-secondary uk-text-small">مربی حرفه‌ای</p>
                     </div>
                     <div class="uk-width-1-3 uk-width-1-4@m">
-                        <p class="uk-margin-remove uk-text-primary uk-text-bolder uk-text-large">1000+</p>
+                        <p class="uk-margin-remove uk-text-primary uk-text-bolder uk-text-large f1-counter" data-count="1000">0+</p>
                         <p class="uk-margin-remove uk-text-bold uk-text-secondary uk-text-small">ورزشکار حرفه ای</p>
                     </div>
                     <div class="uk-width-1-3 uk-width-1-4@m">
-                        <p class="uk-margin-remove uk-text-primary uk-text-bolder uk-text-large">15+</p>
+                        <p class="uk-margin-remove uk-text-primary uk-text-bolder uk-text-large f1-counter" data-count="15">0+</p>
                         <p class="uk-margin-remove uk-text-bold uk-text-secondary uk-text-small">سال تجربه و تخصص</p>
                     </div>
                 </div>
