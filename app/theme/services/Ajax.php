@@ -3,11 +3,14 @@
 namespace App\theme\services;
 
 use App\theme\repository\AthleteBody;
+use App\theme\repository\ChatRepository;
 use App\theme\repository\CoachBalanceRepository;
+use App\theme\repository\CoachRateRepository;
 use App\theme\repository\FinanceSettlementRepository;
 use App\theme\repository\OrderRepository;
 use App\theme\repository\OTP;
 use App\theme\repository\TicketRepository;
+use App\utils\PersianDate;
 use DateTime;
 use WP_Query;
 
@@ -17,19 +20,19 @@ class Ajax {
 
 	private OTP $otp;
 	private TicketRepository $ticket;
-	private $athlete_body;
-	private $chats;
+	private AthleteBody $athlete_body;
+	private ChatRepository $chats;
 	private OrderRepository $orders;
-	private $coach_rate;
+	private CoachRateRepository $coach_rate;
 
 	public function __construct() {
 
 		$this->otp          = new OTP();
 		$this->ticket       = new TicketRepository();
 		$this->athlete_body = new AthleteBody();
-		//$this->chats = new ChatRepository();
-		$this->orders = new OrderRepository();
-		//$this->coach_rate = new CoachRateRepository();
+		$this->chats        = new ChatRepository();
+		$this->orders       = new OrderRepository();
+		$this->coach_rate   = new CoachRateRepository();
 
 		add_action( 'wp_ajax_nopriv_f1-login', [ $this, 'ajax_login' ] );
 
@@ -676,7 +679,7 @@ class Ajax {
                     <div class="uk-grid uk-grid-small uk-flex-bottom uk-flex-right f1-chat-box" uk-grid>
                         <div class="uk-width-auto right">
                             <div class="uk-card uk-card-body uk-padding-small uk-card-primary uk-border-rounded uk-margin-small">
-                                <p class="f1-color-white uk-text-right uk-text-small"><?= str_replace( "\n", "<br>", $chat->message ) ?></p>
+                                <p class="f1-text-white uk-text-right uk-text-small"><?= str_replace( "\n", "<br>", $chat->message ) ?></p>
                             </div>
                         </div>
                         <div class="uk-width-auto uk-margin-remove uk-flex-first date">
@@ -691,7 +694,7 @@ class Ajax {
                     <div class="uk-grid uk-grid-small uk-flex-bottom uk-flex-left f1-chat-box" uk-grid>
                         <div class="uk-width-auto left">
                             <div class="uk-card uk-card-body uk-padding-small uk-card-default uk-border-rounded uk-margin-small">
-                                <p class="uk-text-right uk-text-small"><?= str_replace( "\n", "<br>", $chat->message ) ?></p>
+                                <p class="uk-text-right f1-text-black uk-text-small"><?= str_replace( "\n", "<br>", $chat->message ) ?></p>
                             </div>
                         </div>
                         <div class="uk-width-auto uk-margin-remove date">

@@ -17,6 +17,8 @@ coach order
  * @var $users
  */
 
+use App\theme\services\CoachPostMeta;
+use App\theme\services\CoachUserMeta;
 use App\utils\View;
 
 ?>
@@ -98,14 +100,16 @@ use App\utils\View;
                                 </div>
 
                                 <div class="uk-width-expand">
-                                    <p class="uk-text-small uk-float-left"><?php switch ( $value->type_program ) {
-											case "practice":
-												echo "طراحی برنامه تمرینی";
-												break;
-											case "food":
-												echo "طراحی برنامه غذایی";
-												break;
-										} ?></p>
+                                    <p class="uk-text-small uk-float-left">
+										<?php switch ( $value->type_program ) :
+											case "practice_food" : ?>
+                                                <span>برنامه تمرین و تغذیه</span>
+												<?php break; ?>
+											<?php case "professional_consultation" : ?>
+                                                <span>مشاوره تخصصی</span>
+												<?php break; ?>
+											<?php endswitch; ?>
+                                    </p>
                                 </div>
 
                             </div>
@@ -173,18 +177,14 @@ use App\utils\View;
         <!--Paging-->
 		<?php if ( ceil( $max_count_page / $per_page ) > 1 ): ?>
             <ul class="uk-pagination uk-flex-center uk-margin-large-bottom" uk-margin>
-				<?php if ( isset( $_GET['page'] ) && intval( $_GET['page'] ) !== 1 ): ?>
-                    <li><a href="<?= add_query_arg( [ 'page' => $_GET['page'] - 1 ] ) ?>"><span uk-pagination-previous></span></a></li>
+				<?php if ( isset( $query_var['page'] )  && intval( $query_var['page'] ) !== 1 ): ?>
+                    <li><a href="<?= add_query_arg( [ 'page' => $query_var['page'] - 1 ] ) ?>"><span uk-pagination-previous></span></a></li>
 				<?php endif; ?>
-				<?php for (
-					$i = 1;
-					$i <= ( ceil( $max_count_page / $per_page ) );
-					$i ++
-				): ?>
+				<?php for ( $i = 1; $i <= ( ceil( $max_count_page / $per_page ) ); $i ++ ): ?>
                     <li><a href="<?= add_query_arg( [ 'page' => $i ] ) ?>"><?= $i ?></a></li>
 				<?php endfor; ?>
-				<?php if ( intval( $_GET['page'] ) !== intval( ceil( $max_count_page / $per_page ) ) ): ?>
-                    <li><a href="<?= add_query_arg( [ 'page' => $_GET['page'] + 1 ] ) ?>"><span uk-pagination-next></span></a></li>
+				<?php if ( isset( $query_var['page'] ) && intval( $query_var['page'] ) !== intval( ceil( $max_count_page / $per_page ) ) ): ?>
+                    <li><a href="<?= add_query_arg( [ 'page' => $query_var['page'] + 1 ] ) ?>"><span uk-pagination-next></span></a></li>
 				<?php endif; ?>
             </ul>
 		<?php endif; ?>
@@ -195,12 +195,12 @@ use App\utils\View;
 
             <!--Chat Modal-->
             <div id="<?= "chat_coach_modal_" . $value->id ?>" uk-modal="bgClose: false; escClose: false; modal: false; keyboard: false">
-                <div class="uk-modal-dialog f1-background-f5f5f5">
+                <div class="uk-modal-dialog">
 
                     <button class="uk-modal-close-default" type="button" uk-close></button>
 
                     <div class="uk-modal-header">
-                        <h5 class="uk-heading-bullet"> <?= "مشاوره با " . get_user_by( 'ID', $value->coach_id )->display_name ?></h5>
+                        <h5 class="uk-heading-bullet"> <?= "گفتگو با " . get_user_by( 'ID', $value->coach_id )->display_name ?></h5>
                     </div>
 
                     <div class="uk-modal-body f1-scroller" id="<?= "f1_container_coach_chat_" . $value->id ?>" uk-overflow-auto></div>
@@ -322,6 +322,5 @@ use App\utils\View;
 
 </div>
 <!-- endregion -->
-
 
 <?php get_footer(); ?>

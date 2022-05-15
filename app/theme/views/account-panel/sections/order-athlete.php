@@ -74,14 +74,16 @@ use App\utils\View;
                                 </div>
 
                                 <div>
-                                    <p class="uk-heading-bullet uk-text-small"><?php switch ( $value->type_program ) {
-											case "practice":
-												echo "طراحی برنامه تمرینی";
-												break;
-											case "food":
-												echo "طراحی برنامه غذایی";
-												break;
-										} ?></p>
+                                    <p class="uk-heading-bullet uk-text-small">
+										<?php switch ( $value->type_program ) :
+											case "practice_food" : ?>
+                                                <span>برنامه تمرین و تغذیه</span>
+												<?php break; ?>
+											<?php case "professional_consultation" : ?>
+                                                <span>مشاوره تخصصی</span>
+												<?php break; ?>
+											<?php endswitch; ?>
+                                    </p>
                                 </div>
 
                             </div>
@@ -96,13 +98,13 @@ use App\utils\View;
                                 <ul class="uk-nav uk-dropdown-nav">
 
                                     <li>
-                                        <button class="uk-button f1-color-white f1-background-e9491e uk-button-small" uk-toggle="target: <?= "#chart_athlete_modal_" . $value->id ?>" uk-toggle><span class="uk-margin-small-left" uk-icon="icon: info; ratio: 1.1"></span>مشاهده نمودارها</button>
+                                        <button class="uk-button f1-background-white uk-button-small" uk-toggle="target: <?= "#chart_athlete_modal_" . $value->id ?>" uk-toggle><span class="uk-margin-small-left" uk-icon="icon: info; ratio: 1.1"></span>مشاهده نمودارها</button>
                                     </li>
 
                                     <li class="uk-nav-divider"></li>
 
                                     <li>
-                                        <button class="uk-button f1-color-white f1-background-e9491e uk-button-small" uk-toggle="target: <?= "#chat_athlete_modal_" . $value->id ?>" uk-toggle><span class="uk-margin-small-left" uk-icon="icon: comment; ratio: 1.1"></span>مشاوره و گفتگو</button>
+                                        <button class="uk-button f1-background-white uk-button-small" uk-toggle="target: <?= "#chat_athlete_modal_" . $value->id ?>" uk-toggle><span class="uk-margin-small-left" uk-icon="icon: comment; ratio: 1.1"></span>مشاوره و گفتگو</button>
                                     </li>
 
 									<?php if ( $value->active ): ?>
@@ -110,7 +112,7 @@ use App\utils\View;
                                         <li class="uk-nav-divider"></li>
 
                                         <li>
-                                            <button id="<?= "f1_deactivate_order_" . $value->id ?>" class="uk-button f1-color-white f1-background-e9491e uk-button-small"><span class="uk-margin-small-left" uk-icon="icon: lock; ratio: 1.1"></span>بستن سفارش</button>
+                                            <button id="<?= "f1_deactivate_order_" . $value->id ?>" class="uk-button uk-button-small f1-background-white"><span class="uk-margin-small-left" uk-icon="icon: lock; ratio: 1.1"></span>بستن سفارش</button>
                                         </li>
 
 									<?php endif; ?>
@@ -199,7 +201,7 @@ use App\utils\View;
                     <button class="uk-modal-close-default" type="button" uk-close></button>
 
                     <div class="uk-modal-header">
-                        <h5 class="uk-heading-bullet"> <?= "مشاوره با " . get_user_by( 'ID', $value->athlete_id )->display_name ?></h5>
+                        <h5 class="uk-heading-bullet"> <?= "گفتگو با " . get_user_by( 'ID', $value->athlete_id )->display_name ?></h5>
                     </div>
 
                     <div class="uk-modal-body f1-scroller" id="<?= "f1_container_athlete_chat_" . $value->id ?>" uk-overflow-auto></div>

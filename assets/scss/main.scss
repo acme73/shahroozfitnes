@@ -191,7 +191,7 @@ h1, h2, h3, h4, h5, h6, input, textarea, div, a {
   padding-left: 15px;
   text-decoration: none;
   transition: 0.2s;
-  color : #FFFFFF;
+  color: #FFFFFF;
 }
 
 .f1-paging a:hover {
@@ -298,6 +298,61 @@ h1, h2, h3, h4, h5, h6, input, textarea, div, a {
 
 /*endregion*/
 
+/*regionCursor*/
+
+.f1-cursor-pointer {
+  cursor: pointer;
+}
+
+/*endregion*/
+
+/*regionChat*/
+.f1-chat-box .right {
+  width: fit-content;
+  width: -moz-fit-content;
+  max-width: 400px;
+  word-break: break-word;
+}
+
+.f1-chat-box .right .uk-card::after {
+  content: "";
+  background: #1e87f0;
+  right: -7px;
+  clip-path: polygon(0 70%, 0% 100%, 100% 100%);
+  width: 13px;
+  height: 70px;
+  position: absolute;
+  bottom: 0;
+}
+
+.f1-chat-box .left {
+  width: fit-content;
+  width: -moz-fit-content;
+  max-width: 400px;
+  word-break: break-word;
+}
+
+.f1-chat-box .left .uk-card::after {
+  content: "";
+  background: #ffffff;
+  left: -7px;
+  clip-path: polygon(100% 70%, 0% 100%, 100% 100%);
+  width: 13px;
+  height: 70px;
+  position: absolute;
+  bottom: 0;
+}
+
+.f1-chat-box .date {
+  display: none;
+}
+
+.f1-chat-box:hover .date {
+  display: unset;
+}
+
+/*endregion*/
+
 /*regionForm*/
 
 .uk-input:focus, .uk-select:focus, .uk-textarea:focus {
@@ -311,9 +366,10 @@ h1, h2, h3, h4, h5, h6, input, textarea, div, a {
 /*endregion*/
 
 /*regionOffcanvas*/
-.uk-offcanvas-bar .uk-nav-default .uk-nav-divider{
-  border-top-color:  #5b5b5b !important;
+.uk-offcanvas-bar .uk-nav-default .uk-nav-divider {
+  border-top-color: #5b5b5b !important;
 }
+
 /*endregion*/
 
 /*regionNotification */
@@ -370,7 +426,7 @@ h1, h2, h3, h4, h5, h6, input, textarea, div, a {
 }
 
 .f1-text-white {
-  color: #FFFFFF;
+  color: #FFFFFF !important;
 }
 
 .f1-text-black {
