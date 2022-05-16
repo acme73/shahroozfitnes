@@ -183,6 +183,139 @@ use App\utils\View;
                 </div>
                 <!--/Athlete Details-->
 
+                <!--Athlete Image-->
+                <div class="uk-card uk-card-small uk-card-default uk-margin-small-top f1-border-radius-10">
+
+                    <div class="uk-card-header">
+                        <h6 class="uk-heading-bullet">تصاویر ورزشکار</h6>
+                    </div>
+
+                    <div class="uk-card-body">
+
+                        <div class="uk-alert-danger uk-text-small uk-margin-small" uk-alert>
+                            <p><span class="uk-margin-small-left" uk-icon="warning"></span>فرمت های قابل قبول: jpg,png</p>
+                        </div>
+                        <div class="uk-alert-danger uk-text-small uk-margin-small" uk-alert>
+                            <p><span class="uk-margin-small-left" uk-icon="warning"></span>سایز تصویر شما نباید از 1 مگابایت بیشتر باشد.</p>
+                        </div>
+
+                        <div id="f1_athlete_profile_image_1_container">
+							<?php if ( empty( $athlete_property['athlete_image_1'] ) ): ?>
+
+                                <div class="uk-margin-small uk-width-1-1" uk-form-custom="target:true">
+                                    <label class="uk-form-label">آپلود تصویر اول</label>
+                                    <input id="f1_athlete_profile_image_1" type="file">
+                                    <input class="uk-input" type="text" placeholder="یک تصویر انتخاب کنید..." disabled>
+                                </div>
+
+							<?php else: ?>
+
+                                <div class="uk-margin-small uk-width-1-1 uk-text-center" uk-lightbox>
+                                    <a href="<?= $athlete_property['athlete_image_1'] ?>">
+                                        <img width="400" class="f1-image-upload" src="<?= $athlete_property['athlete_image_1'] ?>">
+                                    </a>
+                                </div>
+
+                                <div class="uk-margin-small uk-width-1-1 uk-text-center">
+                                    <button id="f1_athlete_profile_image_1_remove" class="uk-button-primary uk-button uk-border-pill f1-button-spinner-hide">
+                                        <span uk-icon="trash"></span>
+                                        <span>حذف تصویر اول</span>
+                                        <i uk-spinner="ratio: 1"></i>
+                                    </button>
+                                </div>
+
+							<?php endif; ?>
+                        </div>
+
+                        <div id="f1_athlete_profile_image_2_container">
+							<?php if ( empty( $athlete_property['athlete_image_2'] ) ): ?>
+
+                                <div class="uk-margin-small uk-width-1-1" uk-form-custom="target:true">
+                                    <label class="uk-form-label">آپلود تصویر دوم</label>
+                                    <input id="f1_athlete_profile_image_2" type="file">
+                                    <input class="uk-input" type="text" placeholder="یک تصویر انتخاب کنید..." disabled>
+                                </div>
+
+							<?php else: ?>
+
+                                <div class="uk-margin-small uk-width-1-1 uk-text-center" uk-lightbox>
+                                    <a href="<?= $athlete_property['athlete_image_2'] ?>">
+                                        <img width="400" class="f1-image-upload" src="<?= $athlete_property['athlete_image_2'] ?>">
+                                    </a>
+                                </div>
+
+                                <div class="uk-margin-small uk-width-1-1 uk-text-center">
+                                    <button id="f1_athlete_profile_image_2_remove" class="uk-button-primary uk-button uk-border-pill f1-button-spinner-hide">
+                                        <span uk-icon="trash"></span>
+                                        <span>حذف تصویر دوم</span>
+                                        <i uk-spinner="ratio: 1"></i>
+                                    </button>
+                                </div>
+
+							<?php endif; ?>
+                        </div>
+
+                        <div id="f1_athlete_profile_image_3_container">
+							<?php if ( empty( $athlete_property['athlete_image_3'] ) ): ?>
+
+                                <div class="uk-margin-small uk-width-1-1" uk-form-custom="target:true">
+                                    <label class="uk-form-label">آپلود تصویر سوم</label>
+                                    <input id="f1_athlete_profile_image_3" type="file">
+                                    <input class="uk-input" type="text" placeholder="یک تصویر انتخاب کنید..." disabled>
+                                </div>
+
+							<?php else: ?>
+
+                                <div class="uk-margin-small uk-width-1-1 uk-text-center" uk-lightbox>
+                                    <a href="<?= $athlete_property['athlete_image_3'] ?>">
+                                        <img width="400" class="f1-image-upload" src="<?= $athlete_property['athlete_image_3'] ?>">
+                                    </a>
+                                </div>
+
+                                <div class="uk-margin-small uk-width-1-1 uk-text-center">
+                                    <button id="f1_athlete_profile_image_3_remove" class="uk-button-primary uk-button uk-border-pill f1-button-spinner-hide">
+                                        <span uk-icon="trash"></span>
+                                        <span>حذف تصویر سوم</span>
+                                        <i uk-spinner="ratio: 1"></i>
+                                    </button>
+                                </div>
+
+							<?php endif; ?>
+                        </div>
+
+                        <div id="f1_athlete_profile_image_4_container">
+							<?php if ( empty( $athlete_property['athlete_image_4'] ) ): ?>
+
+                                <div class="uk-margin-small uk-width-1-1" uk-form-custom="target:true">
+                                    <label class="uk-form-label">آپلود تصویر چهارم</label>
+                                    <input id="f1_athlete_profile_image_4" type="file">
+                                    <input class="uk-input" type="text" placeholder="یک تصویر انتخاب کنید..." disabled>
+                                </div>
+
+							<?php else: ?>
+
+                                <div class="uk-margin-small uk-width-1-1 uk-text-center" uk-lightbox>
+                                    <a href="<?= $athlete_property['athlete_image_4'] ?>">
+                                        <img width="400" class="f1-image-upload" src="<?= $athlete_property['athlete_image_4'] ?>">
+                                    </a>
+                                </div>
+
+                                <div class="uk-margin-small uk-width-1-1 uk-text-center">
+                                    <button id="f1_athlete_profile_image_4_remove" class="uk-button-primary uk-button uk-border-pill f1-button-spinner-hide">
+                                        <span uk-icon="trash"></span>
+                                        <span>حذف تصویر چهارم</span>
+                                        <i uk-spinner="ratio: 1"></i>
+                                    </button>
+                                </div>
+
+							<?php endif; ?>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!--/Athlete Image-->
+
             </div>
 
         </div>

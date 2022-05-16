@@ -903,12 +903,197 @@ class Ajax {
 				$this->response( "failed", "سال تولد خود را به عدد وارد کنید" );
 			}
 
+			if ( ! is_null( $_FILES['athlete_image_1'] ) ) {
+
+				$image_tmp_name = $_FILES['athlete_image_1']['tmp_name'];
+				$image_size     = $_FILES['athlete_image_1']['size'];
+				$image_error    = $_FILES['athlete_image_1']['error'];
+				$image_type     = $_FILES['athlete_image_1']['type'];
+				$image_format   = explode( "/", $image_type );
+				$image_format   = strtolower( end( $image_format ) );
+
+				if ( $image_error !== 0 ) {
+					$this->response( "failed", "در آپلود تصویر اول خطایی وجود دارد" );
+				}
+
+				if ( ! in_array( $image_format, [ 'jpg', 'png', 'jpeg' ] ) ) {
+					$this->response( "failed", "فرمت تصویر اول باید jpg یا png باشد" );
+				}
+
+				if ( $image_size > 1061806 ) {
+					$this->response( "failed", "سایز تصویر اول نباید بیشتر از 1 مگابایت باشد" );
+				}
+
+				$image_new_name         = uniqid( "", true ) . "." . ( $image_format === 'jpeg' ? 'jpg' : $image_format );
+				$image_destination_path = F1_THEME_UPLOADS_PATH . 'athlete' . DIRECTORY_SEPARATOR . $image_new_name;
+				$image_destination_url  = F1_THEME_UPLOADS_URL . "athlete/" . $image_new_name;
+
+				move_uploaded_file( $image_tmp_name, $image_destination_path );
+
+				AthleteUserMeta::update_athlete_property( get_current_user_id(), [ "athlete_image_1" => $image_destination_url ] );
+
+			}
+
+			if ( ! is_null( $_FILES['athlete_image_2'] ) ) {
+
+				$image_tmp_name = $_FILES['athlete_image_2']['tmp_name'];
+				$image_size     = $_FILES['athlete_image_2']['size'];
+				$image_error    = $_FILES['athlete_image_2']['error'];
+				$image_type     = $_FILES['athlete_image_2']['type'];
+				$image_format   = explode( "/", $image_type );
+				$image_format   = strtolower( end( $image_format ) );
+
+				if ( $image_error !== 0 ) {
+					$this->response( "failed", "در آپلود تصویر دوم خطایی وجود دارد" );
+				}
+
+				if ( ! in_array( $image_format, [ 'jpg', 'png', 'jpeg' ] ) ) {
+					$this->response( "failed", "فرمت تصویر دوم باید jpg یا png باشد" );
+				}
+
+				if ( $image_size > 1061806 ) {
+					$this->response( "failed", "سایز تصویر دوم نباید بیشتر از 1 مگابایت باشد" );
+				}
+
+				$image_new_name         = uniqid( "", true ) . "." . ( $image_format === 'jpeg' ? 'jpg' : $image_format );
+				$image_destination_path = F1_THEME_UPLOADS_PATH . 'athlete' . DIRECTORY_SEPARATOR . $image_new_name;
+				$image_destination_url  = F1_THEME_UPLOADS_URL . "athlete/" . $image_new_name;
+
+				move_uploaded_file( $image_tmp_name, $image_destination_path );
+
+				AthleteUserMeta::update_athlete_property( get_current_user_id(), [ "athlete_image_2" => $image_destination_url ] );
+
+			}
+
+			if ( ! is_null( $_FILES['athlete_image_3'] ) ) {
+
+				$image_tmp_name = $_FILES['athlete_image_3']['tmp_name'];
+				$image_size     = $_FILES['athlete_image_3']['size'];
+				$image_error    = $_FILES['athlete_image_3']['error'];
+				$image_type     = $_FILES['athlete_image_3']['type'];
+				$image_format   = explode( "/", $image_type );
+				$image_format   = strtolower( end( $image_format ) );
+
+				if ( $image_error !== 0 ) {
+					$this->response( "failed", "در آپلود تصویر سوم خطایی وجود دارد" );
+				}
+
+				if ( ! in_array( $image_format, [ 'jpg', 'png', 'jpeg' ] ) ) {
+					$this->response( "failed", "فرمت تصویر سوم باید jpg یا png باشد" );
+				}
+
+				if ( $image_size > 1061806 ) {
+					$this->response( "failed", "سایز تصویر سوم نباید بیشتر از 1 مگابایت باشد" );
+				}
+
+				$image_new_name         = uniqid( "", true ) . "." . ( $image_format === 'jpeg' ? 'jpg' : $image_format );
+				$image_destination_path = F1_THEME_UPLOADS_PATH . 'athlete' . DIRECTORY_SEPARATOR . $image_new_name;
+				$image_destination_url  = F1_THEME_UPLOADS_URL . "athlete/" . $image_new_name;
+
+				move_uploaded_file( $image_tmp_name, $image_destination_path );
+
+				AthleteUserMeta::update_athlete_property( get_current_user_id(), [ "athlete_image_3" => $image_destination_url ] );
+
+			}
+
+			if ( ! is_null( $_FILES['athlete_image_4'] ) ) {
+
+				$image_tmp_name = $_FILES['athlete_image_4']['tmp_name'];
+				$image_size     = $_FILES['athlete_image_4']['size'];
+				$image_error    = $_FILES['athlete_image_4']['error'];
+				$image_type     = $_FILES['athlete_image_4']['type'];
+				$image_format   = explode( "/", $image_type );
+				$image_format   = strtolower( end( $image_format ) );
+
+				if ( $image_error !== 0 ) {
+					$this->response( "failed", "در آپلود تصویر چهارم خطایی وجود دارد" );
+				}
+
+				if ( ! in_array( $image_format, [ 'jpg', 'png', 'jpeg' ] ) ) {
+					$this->response( "failed", "فرمت تصویر چهارم باید jpg یا png باشد" );
+				}
+
+				if ( $image_size > 1061806 ) {
+					$this->response( "failed", "سایز تصویر چهارم نباید بیشتر از 1 مگابایت باشد" );
+				}
+
+				$image_new_name         = uniqid( "", true ) . "." . ( $image_format === 'jpeg' ? 'jpg' : $image_format );
+				$image_destination_path = F1_THEME_UPLOADS_PATH . 'athlete' . DIRECTORY_SEPARATOR . $image_new_name;
+				$image_destination_url  = F1_THEME_UPLOADS_URL . "athlete/" . $image_new_name;
+
+				move_uploaded_file( $image_tmp_name, $image_destination_path );
+
+				AthleteUserMeta::update_athlete_property( get_current_user_id(), [ "athlete_image_4" => $image_destination_url ] );
+
+			}
+
 			AthleteUserMeta::update_athlete_property( get_current_user_id(), [
 				"athlete_gender" => $_POST['athlete_gender'],
 				"athlete_birth"  => $_POST['athlete_birth']
 			] );
 
 			$this->response( "success", "اطلاعات با موفقیت بروزرسانی شد" );
+
+		}
+
+		//remove athlete images 1
+		if ( $_POST["command"] === 'athlete_image_1_remove' ) {
+
+			check_ajax_referer( "f1_account_athlete_ajax_nonce", "nonce" );
+
+			if ( ! current_user_can( 'f1_athlete' ) ) {
+				$this->response( "failed", "دسترسی غیر مجاز" );
+			}
+
+			AthleteUserMeta::update_athlete_property( get_current_user_id(), [ "athlete_image_1" => '' ] );
+
+			$this->response( "success" );
+
+		}
+
+		//remove athlete images 2
+		if ( $_POST["command"] === 'athlete_image_2_remove' ) {
+
+			check_ajax_referer( "f1_account_athlete_ajax_nonce", "nonce" );
+
+			if ( ! current_user_can( 'f1_athlete' ) ) {
+				$this->response( "failed", "دسترسی غیر مجاز" );
+			}
+
+			AthleteUserMeta::update_athlete_property( get_current_user_id(), [ "athlete_image_2" => '' ] );
+
+			$this->response( "success" );
+
+		}
+
+		//remove athlete images 3
+		if ( $_POST["command"] === 'athlete_image_3_remove' ) {
+
+			check_ajax_referer( "f1_account_athlete_ajax_nonce", "nonce" );
+
+			if ( ! current_user_can( 'f1_athlete' ) ) {
+				$this->response( "failed", "دسترسی غیر مجاز" );
+			}
+
+			AthleteUserMeta::update_athlete_property( get_current_user_id(), [ "athlete_image_3" => '' ] );
+
+			$this->response( "success" );
+
+		}
+
+		//remove athlete images 4
+		if ( $_POST["command"] === 'athlete_image_4_remove' ) {
+
+			check_ajax_referer( "f1_account_athlete_ajax_nonce", "nonce" );
+
+			if ( ! current_user_can( 'f1_athlete' ) ) {
+				$this->response( "failed", "دسترسی غیر مجاز" );
+			}
+
+			AthleteUserMeta::update_athlete_property( get_current_user_id(), [ "athlete_image_4" => '' ] );
+
+			$this->response( "success" );
+
 		}
 
 		//show chart for athlete user

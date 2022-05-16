@@ -21,26 +21,45 @@ class Athlete {
             $(document).on("click", "#f1_athlete_profile_submit", function () {
 
                 var self = $(this);
+                var form_data = new FormData();
+                var upload_image_1 = $("#f1_athlete_profile_image_1");
+                var upload_image_2 = $("#f1_athlete_profile_image_2");
+                var upload_image_3 = $("#f1_athlete_profile_image_3");
+                var upload_image_4 = $("#f1_athlete_profile_image_4");
+
                 var athlete_gender = $("#f1_athlete_profile_gender").val();
                 var athlete_birth = $("#f1_athlete_profile_birth").val();
+                var athlete_image_1 = upload_image_1.length ? upload_image_1.prop('files')[0] : null;
+                var athlete_image_2 = upload_image_2.length ? upload_image_2.prop('files')[0] : null;
+                var athlete_image_3 = upload_image_3.length ? upload_image_3.prop('files')[0] : null;
+                var athlete_image_4 = upload_image_4.length ? upload_image_4.prop('files')[0] : null;
+
+                form_data.append('nonce', f1_account_athlete_data.nonce);
+                form_data.append('action', 'f1-account');
+                form_data.append('command', 'athlete_profile');
+                form_data.append('athlete_gender', athlete_gender);
+                form_data.append('athlete_birth', athlete_birth);
+                form_data.append('athlete_image_1', athlete_image_1);
+                form_data.append('athlete_image_2', athlete_image_2);
+                form_data.append('athlete_image_3', athlete_image_3);
+                form_data.append('athlete_image_4', athlete_image_4);
 
                 $.ajax({
                     url: f1_account_athlete_data.ajax_url,
                     dataType: 'json',
                     type: 'POST',
-                    data: {
-                        action: 'f1-account',
-                        nonce: f1_account_athlete_data.nonce,
-                        command: "athlete_profile",
-                        athlete_gender: athlete_gender,
-                        athlete_birth: athlete_birth
-                    },
+                    processData: false,
+                    contentType: false,
+                    data: form_data,
                     beforeSend() {
                         self.addClass('f1-button-spinner-show');
                         self.removeClass('f1-button-spinner-hide');
                         self.attr('disabled', true);
                     },
                     success(result) {
+                        if (result.status === 'test') {
+                            console.log(result);
+                        }
                         if (result.status === 'success') {
                             UIkit.notification("<span class='fas fa-check-square f1-ml-7'></span>" + result.message,
                                 {pos: 'bottom-left', status: 'success', timeout: 2000});
@@ -50,6 +69,202 @@ class Athlete {
                         }
                         if (result.status === 'reload') {
                             window.location.reload();
+                        }
+                        if (result.status === 'failed') {
+                            UIkit.notification("<span class='fas fa-exclamation-triangle f1-ml-7'></span>" + result.message,
+                                {pos: 'bottom-left', status: 'warning', timeout: 2000});
+                        }
+                    },
+                    error() {
+                        UIkit.notification("<span class='fas fa-exclamation-triangle f1-ml-7'></span>" + "مشکل در ارتباط با پایگاه داده",
+                            {pos: 'bottom-left', status: 'warning', timeout: 2000});
+                    },
+                    complete() {
+                        self.removeClass('f1-button-spinner-show');
+                        self.addClass('f1-button-spinner-hide');
+                        self.attr('disabled', false);
+                    }
+                });
+
+            });
+
+            /*Athlete Image 1  Remove*/
+            $(document).on("click", "#f1_athlete_profile_image_1_remove", function () {
+
+                var self = $(this);
+                var parent = $("#f1_athlete_profile_image_1_container");
+
+                var upload_image = $("<div>", {class: "uk-margin-small uk-width-1-1", "uk-form-custom": "target:true"}).append(
+                    $("<label>", {class: "uk-form-label", text: "آپلود تصویر اول"}),
+                    $("<input>", {id: "f1_athlete_profile_image_1", type: "file"}),
+                    $("<input>", {class: "uk-input", placeholder: "یک تصویر انتخاب کنید...", type: "text", disabled: "disabled"})
+                );
+
+                $.ajax({
+                    url: f1_account_athlete_data.ajax_url,
+                    dataType: 'json',
+                    type: 'POST',
+                    data: {
+                        action: 'f1-account',
+                        nonce: f1_account_athlete_data.nonce,
+                        command: "athlete_image_1_remove"
+                    },
+                    beforeSend() {
+                        self.addClass('f1-button-spinner-show');
+                        self.removeClass('f1-button-spinner-hide');
+                        self.attr('disabled', true);
+                    },
+                    success(result) {
+                        if (result.status === 'success') {
+                            parent.children().remove();
+                            parent.append(upload_image);
+                        }
+                        if (result.status === 'failed') {
+                            UIkit.notification("<span class='fas fa-exclamation-triangle f1-ml-7'></span>" + result.message,
+                                {pos: 'bottom-left', status: 'warning', timeout: 2000});
+                        }
+                    },
+                    error() {
+                        UIkit.notification("<span class='fas fa-exclamation-triangle f1-ml-7'></span>" + "مشکل در ارتباط با پایگاه داده",
+                            {pos: 'bottom-left', status: 'warning', timeout: 2000});
+                    },
+                    complete() {
+                        self.removeClass('f1-button-spinner-show');
+                        self.addClass('f1-button-spinner-hide');
+                        self.attr('disabled', false);
+                    }
+                });
+
+            });
+
+            /*Athlete Image 2  Remove*/
+            $(document).on("click", "#f1_athlete_profile_image_2_remove", function () {
+
+                var self = $(this);
+                var parent = $("#f1_athlete_profile_image_2_container");
+
+                var upload_image = $("<div>", {class: "uk-margin-small uk-width-1-1", "uk-form-custom": "target:true"}).append(
+                    $("<label>", {class: "uk-form-label", text: "آپلود تصویر دوم"}),
+                    $("<input>", {id: "f1_athlete_profile_image_2", type: "file"}),
+                    $("<input>", {class: "uk-input", placeholder: "یک تصویر انتخاب کنید...", type: "text", disabled: "disabled"})
+                );
+
+                $.ajax({
+                    url: f1_account_athlete_data.ajax_url,
+                    dataType: 'json',
+                    type: 'POST',
+                    data: {
+                        action: 'f1-account',
+                        nonce: f1_account_athlete_data.nonce,
+                        command: "athlete_image_2_remove"
+                    },
+                    beforeSend() {
+                        self.addClass('f1-button-spinner-show');
+                        self.removeClass('f1-button-spinner-hide');
+                        self.attr('disabled', true);
+                    },
+                    success(result) {
+                        if (result.status === 'success') {
+                            parent.children().remove();
+                            parent.append(upload_image);
+                        }
+                        if (result.status === 'failed') {
+                            UIkit.notification("<span class='fas fa-exclamation-triangle f1-ml-7'></span>" + result.message,
+                                {pos: 'bottom-left', status: 'warning', timeout: 2000});
+                        }
+                    },
+                    error() {
+                        UIkit.notification("<span class='fas fa-exclamation-triangle f1-ml-7'></span>" + "مشکل در ارتباط با پایگاه داده",
+                            {pos: 'bottom-left', status: 'warning', timeout: 2000});
+                    },
+                    complete() {
+                        self.removeClass('f1-button-spinner-show');
+                        self.addClass('f1-button-spinner-hide');
+                        self.attr('disabled', false);
+                    }
+                });
+
+            });
+
+            /*Athlete Image 3  Remove*/
+            $(document).on("click", "#f1_athlete_profile_image_3_remove", function () {
+
+                var self = $(this);
+                var parent = $("#f1_athlete_profile_image_3_container");
+
+                var upload_image = $("<div>", {class: "uk-margin-small uk-width-1-1", "uk-form-custom": "target:true"}).append(
+                    $("<label>", {class: "uk-form-label", text: "آپلود تصویر سوم"}),
+                    $("<input>", {id: "f1_athlete_profile_image_2", type: "file"}),
+                    $("<input>", {class: "uk-input", placeholder: "یک تصویر انتخاب کنید...", type: "text", disabled: "disabled"})
+                );
+
+                $.ajax({
+                    url: f1_account_athlete_data.ajax_url,
+                    dataType: 'json',
+                    type: 'POST',
+                    data: {
+                        action: 'f1-account',
+                        nonce: f1_account_athlete_data.nonce,
+                        command: "athlete_image_3_remove"
+                    },
+                    beforeSend() {
+                        self.addClass('f1-button-spinner-show');
+                        self.removeClass('f1-button-spinner-hide');
+                        self.attr('disabled', true);
+                    },
+                    success(result) {
+                        if (result.status === 'success') {
+                            parent.children().remove();
+                            parent.append(upload_image);
+                        }
+                        if (result.status === 'failed') {
+                            UIkit.notification("<span class='fas fa-exclamation-triangle f1-ml-7'></span>" + result.message,
+                                {pos: 'bottom-left', status: 'warning', timeout: 2000});
+                        }
+                    },
+                    error() {
+                        UIkit.notification("<span class='fas fa-exclamation-triangle f1-ml-7'></span>" + "مشکل در ارتباط با پایگاه داده",
+                            {pos: 'bottom-left', status: 'warning', timeout: 2000});
+                    },
+                    complete() {
+                        self.removeClass('f1-button-spinner-show');
+                        self.addClass('f1-button-spinner-hide');
+                        self.attr('disabled', false);
+                    }
+                });
+
+            });
+
+            /*Athlete Image 4  Remove*/
+            $(document).on("click", "#f1_athlete_profile_image_4_remove", function () {
+
+                var self = $(this);
+                var parent = $("#f1_athlete_profile_image_4_container");
+
+                var upload_image = $("<div>", {class: "uk-margin-small uk-width-1-1", "uk-form-custom": "target:true"}).append(
+                    $("<label>", {class: "uk-form-label", text: "آپلود تصویر چهارم"}),
+                    $("<input>", {id: "f1_athlete_profile_image_2", type: "file"}),
+                    $("<input>", {class: "uk-input", placeholder: "یک تصویر انتخاب کنید...", type: "text", disabled: "disabled"})
+                );
+
+                $.ajax({
+                    url: f1_account_athlete_data.ajax_url,
+                    dataType: 'json',
+                    type: 'POST',
+                    data: {
+                        action: 'f1-account',
+                        nonce: f1_account_athlete_data.nonce,
+                        command: "athlete_image_4_remove"
+                    },
+                    beforeSend() {
+                        self.addClass('f1-button-spinner-show');
+                        self.removeClass('f1-button-spinner-hide');
+                        self.attr('disabled', true);
+                    },
+                    success(result) {
+                        if (result.status === 'success') {
+                            parent.children().remove();
+                            parent.append(upload_image);
                         }
                         if (result.status === 'failed') {
                             UIkit.notification("<span class='fas fa-exclamation-triangle f1-ml-7'></span>" + result.message,
