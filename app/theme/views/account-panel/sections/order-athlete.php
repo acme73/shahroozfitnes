@@ -17,6 +17,7 @@ order athlete
  * @var $query_var
  */
 
+use App\theme\services\AthleteUserMeta;
 use App\utils\View;
 
 ?>
@@ -98,7 +99,7 @@ use App\utils\View;
                                 <ul class="uk-nav uk-dropdown-nav">
 
                                     <li>
-                                        <button class="uk-button f1-background-white uk-button-small" uk-toggle="target: <?= "#chart_athlete_modal_" . $value->id ?>" uk-toggle><span class="uk-margin-small-left" uk-icon="icon: info; ratio: 1.1"></span>مشاهده نمودارها</button>
+                                        <button class="uk-button f1-background-white uk-button-small" uk-toggle="target: <?= "#info_athlete_modal_" . $value->id ?>" uk-toggle><span class="uk-margin-small-left" uk-icon="icon: info; ratio: 1.1"></span>مشاهده اطلاعات</button>
                                     </li>
 
                                     <li class="uk-nav-divider"></li>
@@ -156,43 +157,121 @@ use App\utils\View;
         <!--Modal-->
 		<?php foreach ( $order->get_orders_for_coach( get_current_user_id(), $offset, $per_page ) as $value ): ?>
 
-            <!--Chart Athlete-->
-            <div id="<?= "chart_athlete_modal_" . $value->id ?>" class="uk-modal-container" uk-modal>
-                <div class="uk-modal-dialog f1-background-f5f5f5">
+            <!--Info Athlete-->
+            <div id="<?= "info_athlete_modal_" . $value->id ?>" uk-modal>
+                <div class="uk-modal-dialog">
 
-                    <button class="uk-modal-close-outside" type="button" uk-close></button>
+                    <button class="uk-modal-close-default" type="button" uk-close></button>
 
-                    <div class="uk-modal-body f1-scroller" uk-overflow-auto>
+                    <ul class="uk-margin-remove" uk-tab>
+                        <li style="padding-right: 0px"><a style="padding: 14px" href="#">اطلاعات ورزشکار</a></li>
+                        <li><a style="padding: 14px" href="#">تصاویر ورزشکار</a></li>
+                        <li><a style="padding: 14px" href="#">نمودارها</a></li>
+                    </ul>
 
-                        <div class="uk-card uk-card-small uk-card-default uk-margin-small f1-border-radius-10">
+                    <ul class="uk-switcher">
 
-                            <div class="uk-card-body">
-                                <h5 class="uk-heading-bullet"> <?= "نمودار وزن " . get_user_by( 'ID', $value->athlete_id )->display_name ?></h5>
+                        <li>
+                            <div class="uk-modal-body f1-scroller" uk-overflow-auto>
+                                <div class="uk-grid uk-grid-medium uk-grid-column-small uk-child-width-1-2@m ">
+
+                                    <div>
+                                        <!--Coach Name-->
+                                        <label class="uk-form-label uk-text-meta">نام و نام خانوادگی</label>
+                                        <input class="uk-input uk-form-small" type="text" value="<?= get_user_by( 'ID', $value->athlete_id )->display_name ?>" disabled>
+                                        <!--/Coach Name-->
+                                    </div>
+
+                                    <div>
+                                        <!--Coach Birth-->
+                                        <label class="uk-form-label uk-text-meta">سال تولد</label>
+                                        <input class="uk-input uk-form-small" type="text" value="<?php
+										if ( isset( AthleteUserMeta::get_athlete_property( $value->athlete_id )['athlete_birth'] ) ) {
+											echo AthleteUserMeta::get_athlete_property( $value->athlete_id )['athlete_birth'];
+										}
+										?>" disabled>
+                                        <!--/Coach Birth-->
+                                    </div>
+
+                                </div>
                             </div>
+                        </li>
 
-                            <div id="<?= "f1_athlete_chart_weight_container_" . $value->id ?>" class="uk-card-body" style="position: relative;height: 300px;margin: 0 auto;">
-                                <canvas id="<?= "f1_athlete_chart_weight_" . $value->id ?>"></canvas>
+                        <li>
+                            <div class="uk-modal-body f1-scroller" uk-overflow-auto>
+                                <div class="uk-child-width-1-1 width-1-1 uk-child-width-1-2@m" uk-grid>
+
+									<?php if ( isset( AthleteUserMeta::get_athlete_property( $value->athlete_id )['athlete_image_1'] ) ): ?>
+                                        <div class="uk-text-center" uk-lightbox>
+                                            <a href="<?= AthleteUserMeta::get_athlete_property( $value->athlete_id )['athlete_image_1'] ?>">
+                                                <img width="200" src="<?= AthleteUserMeta::get_athlete_property( $value->athlete_id )['athlete_image_1'] ?>">
+                                            </a>
+                                        </div>
+									<?php endif ?>
+
+									<?php if ( isset( AthleteUserMeta::get_athlete_property( $value->athlete_id )['athlete_image_2'] ) ): ?>
+                                        <div class="uk-text-center" uk-lightbox>
+                                            <a href="<?= AthleteUserMeta::get_athlete_property( $value->athlete_id )['athlete_image_2'] ?>">
+                                                <img width="200" class="f1-image-upload" src="<?= AthleteUserMeta::get_athlete_property( $value->athlete_id )['athlete_image_2'] ?>">
+                                            </a>
+                                        </div>
+									<?php endif ?>
+
+									<?php if ( isset( AthleteUserMeta::get_athlete_property( $value->athlete_id )['athlete_image_3'] ) ): ?>
+                                        <div class="uk-text-center" uk-lightbox>
+                                            <a href="<?= AthleteUserMeta::get_athlete_property( $value->athlete_id )['athlete_image_3'] ?>">
+                                                <img width="200" class="f1-image-upload" src="<?= AthleteUserMeta::get_athlete_property( $value->athlete_id )['athlete_image_3'] ?>">
+                                            </a>
+                                        </div>
+									<?php endif ?>
+
+									<?php if ( isset( AthleteUserMeta::get_athlete_property( $value->athlete_id )['athlete_image_4'] ) ): ?>
+                                        <div class="uk-text-center" uk-lightbox>
+                                            <a href="<?= AthleteUserMeta::get_athlete_property( $value->athlete_id )['athlete_image_4'] ?>">
+                                                <img width="200" class="f1-image-upload" src="<?= AthleteUserMeta::get_athlete_property( $value->athlete_id )['athlete_image_4'] ?>">
+                                            </a>
+                                        </div>
+									<?php endif ?>
+
+                                </div>
                             </div>
+                        </li>
 
-                        </div>
+                        <li>
+                            <div class="uk-modal-body f1-scroller" uk-overflow-auto>
 
-                        <div class="uk-card uk-card-small uk-card-default uk-margin-small f1-border-radius-10">
+                                <div class="uk-card uk-card-small uk-card-default uk-margin-small f1-border-radius-10">
 
-                            <div class="uk-card-body">
-                                <h5 class="uk-heading-bullet"> <?= "نمودار قد " . get_user_by( 'ID', $value->athlete_id )->display_name ?></h5>
+                                    <div class="uk-card-body">
+                                        <h5 class="uk-heading-bullet"> <?= "نمودار وزن " . get_user_by( 'ID', $value->athlete_id )->display_name ?></h5>
+                                    </div>
+
+                                    <div id="<?= "f1_athlete_chart_weight_container_" . $value->id ?>" class="uk-card-body" style="position: relative;height: 300px;margin: 0 auto;">
+                                        <canvas id="<?= "f1_athlete_chart_weight_" . $value->id ?>"></canvas>
+                                    </div>
+
+                                </div>
+
+                                <div class="uk-card uk-card-small uk-card-default uk-margin-small f1-border-radius-10">
+
+                                    <div class="uk-card-body">
+                                        <h5 class="uk-heading-bullet"> <?= "نمودار قد " . get_user_by( 'ID', $value->athlete_id )->display_name ?></h5>
+                                    </div>
+
+                                    <div id="<?= "f1_athlete_chart_height_container_" . $value->id ?>" class="uk-card-body" style="position: relative;height: 300px;margin: 0 auto;">
+                                        <canvas id="<?= "f1_athlete_chart_height_" . $value->id ?>"></canvas>
+                                    </div>
+
+                                </div>
+
                             </div>
+                        </li>
 
-                            <div id="<?= "f1_athlete_chart_height_container_" . $value->id ?>" class="uk-card-body" style="position: relative;height: 300px;margin: 0 auto;">
-                                <canvas id="<?= "f1_athlete_chart_height_" . $value->id ?>"></canvas>
-                            </div>
-
-                        </div>
-
-                    </div>
+                    </ul>
 
                 </div>
             </div>
-            <!--/Chart Athlete-->
+            <!--/Info Athlete-->
 
             <!--Chat Modal-->
             <div id="<?= "chat_athlete_modal_" . $value->id ?>" uk-modal="bgClose: false; escClose: false; modal: false; keyboard: false">

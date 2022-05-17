@@ -387,8 +387,8 @@ class Coach {
 
         jQuery(document).ready(function ($) {
 
-            /*Show Chart Athlete For Coach*/
-            UIkit.util.on("div[id^=\"chart_athlete_modal_\"]", "beforeshow", function () {
+            /*Show Info Athlete For Coach*/
+            UIkit.util.on("div[id^=\"info_athlete_modal_\"]", "beforeshow", function () {
 
                 var order_id = parseInt(this.id.match(/\d+$/));
                 UIkit.dropdown($("#f1_options_order_coach_" + order_id)).hide();
